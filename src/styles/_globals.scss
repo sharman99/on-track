@@ -1,0 +1,19 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap');
+
+%body-font {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+}
+
+%header-font {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  letter-spacing: 8%;
+}
+
+// Colors
+$dark: #333333;
+$light: #F0F0F0;
+$green: #679289;
+$coral: #FB8F67;

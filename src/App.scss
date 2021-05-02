@@ -1,0 +1,62 @@
+@use 'styles/globals' as *;
+
+// Text Styles
+.default-text {
+  @extend %body-font;
+  color: $dark;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.heading {
+  @extend %header-font;
+  color: $dark;
+  font-size: 12px;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.field-heading {
+  @extend .default-text;
+  text-transform: uppercase;
+}
+
+.field-option {
+  @extend .default-text;
+  font-size: 12px;
+}
+
+body {
+  @extend .default-text;
+}
+
+h1, h3, h4, h5, h6 {
+  @extend .heading;
+}
+
+h2 {
+  @extend .field-heading;
+}
+
+label, option {
+  @extend .field-option;
+}
+
+a {
+  color: $green;
+  text-decoration: none;
+  border-bottom: 2px solid $green;
+  transition: .35s;
+
+  &:hover {
+    color: $coral;
+    border-bottom: 2px solid $coral;
+  }
+}
+
+// Spacing & Formatting
+.container {
+  margin: 0px auto;
+  width: 80%;
+  max-width: 800px;
+}
