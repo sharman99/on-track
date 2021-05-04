@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.scss';
+import LoadingZoom from './LoadingZoom'
+import LoadingSheets from './LoadingSheets'
 
 function App() {
   return (
