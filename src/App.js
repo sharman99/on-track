@@ -5,6 +5,7 @@ import LoadingSheets from './LoadingSheets'
 import SignIn from './SignIn'
 import SignUp from './signup'
 import { HashRouter, Route, Link } from 'react-router-dom';
+import Profile from './profile';
 
 function App() {
   return (
@@ -40,6 +41,13 @@ function App() {
             <LoadingSheets {...props}/>
           )}
         />
+        <Route 
+          path='/profile'
+          render={(props) => (
+            <Profile {...props}/>
+          )}
+        />
+        
       </HashRouter>
     </div>
   );
