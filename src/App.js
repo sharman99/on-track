@@ -3,24 +3,44 @@ import './App.scss';
 import LoadingZoom from './LoadingZoom'
 import LoadingSheets from './LoadingSheets'
 import SignIn from './SignIn'
+import SignUp from './signup'
+import { HashRouter, Route, Link } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HashRouter>
+        <Route 
+          exact path='/'
+          render={(props) => (
+            <SignIn {...props}/>
+          )}
+        />
+        <Route 
+          path='/sign_in'
+          render={(props) => (
+            <SignIn {...props}/>
+          )}
+        />
+        <Route 
+          path='/sign_up'
+          render={(props) => (
+            <SignUp {...props}/>
+          )}
+        />
+        <Route 
+          path='/loading_zoom'
+          render={(props) => (
+            <LoadingZoom {...props}/>
+          )}
+        />
+        <Route 
+          path='/loading_sheets'
+          render={(props) => (
+            <LoadingSheets {...props}/>
+          )}
+        />
+      </HashRouter>
     </div>
   );
 }
