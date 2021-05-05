@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.scss';
 import LoadingZoom from './LoadingZoom'
 import LoadingSheets from './LoadingSheets'
+import SignIn from './SignIn'
 
 function App() {
   return (
