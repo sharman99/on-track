@@ -31,7 +31,9 @@ function App() {
           <input type="radio" id="other" name="neg_behavior" value="other" />
           <label for="other">Other</label>
           <input type="text" id="other_text" name="neg_behavior" /><br />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Report User" />
+          <input type="submit" value="Cancel" />
+
       </form>
       </header>
     </div>
