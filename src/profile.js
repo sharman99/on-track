@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import background from "./green_background.jpg"
 import React, { Component } from 'react';
 import firebase from './firebase';
+import profile_img from "./profile_img.png"
 
 class Profile extends Component{
   constructor(props){
@@ -11,10 +12,10 @@ class Profile extends Component{
     this.state={
 
     }
-    this.signIn = this.signIn.bind(this)
   }
 
-  signIn = event => {
+  reportUser = event => {
+      //CHANGE THIS BELOW TO BE ABOUT REPORTING USER
     event.preventDefault();
     const {email, password} = this.state;
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -31,51 +32,64 @@ class Profile extends Component{
     });
   }
 
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
   render() {
     const {
       email,
       password,
     } = this.state;
     return (
-      <div className="App"
-          style={{ backgroundImage: `url(${background})`, width:'100%', opacity:'50%', backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize: "cover"}}
-      >   
-      <div>
-        <h1>
-            profile
-        </h1>
-      </div>
-        <div id="center_square"
-            style={{ backgroundColor: 'white', position:'absolute', top:'30%', left:'30%', padding: '10%'}}
-        >
-          <header className="App-header">
+        <div className="App">
+            <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
-          </header>
-          <div>
-            <p>EMAIL</p>
-            <input className="input"
-              name="email"
-              value={email}
-              onChange={this.onChange}
-              type="email"
-            />
-          </div>
-          <div>
-            <p>PASSWORD</p>
-            <input className="input"
-              name="password"
-              value={password}
-              onChange={this.onChange}
-              type="password"
-            />
-          </div>
-          <button onClick={this.signIn}>SIGN IN</button>
+            </header>
+
+            <p>
+                PROFILE
+            </p>
+
+            <button onClick={this.reportUser}>REPORT USER</button>
+
+            <p>
+                ANSEL DAVIS (HE/THEY)
+            </p>
+
+            <img src={profile_img} className="App-logo" alt="profile_img" />
+
+
+            <p>
+                HUMAN BIOLOGY
+            </p>
+
+            <p>
+                JUNIOR
+            </p>
+
+            <p>
+                MESSENGER, TEXT
+            </p>
+
+            <p>
+                ADDITIONAL INFO
+            </p>
+
+            <p>
+                TYPES OF WORK: ESSAYS, PSETS, READINGS
+            </p>
+
+            <p>
+                HOURS / WEEK: 20
+            </p>
+
+            <p>
+                GOALS: COMPLETE SENIOR THESIS
+            </p>
+
+            <p>
+                PREVIOUS POD RATING:
+            </p>
+            
+
         </div>
-      </div>
     );
   }
 }
