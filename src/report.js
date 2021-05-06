@@ -20,7 +20,7 @@ class Report extends Component{
   uploadReport = event => {
     event.preventDefault();
     const db = firebase.firestore();
-    const addDoc = db.collection("reportedUsers").doc(this.state.reportedUser).set({
+    const addReport = db.collection("reportedUsers").doc(this.state.reportedUser).set({
       "reason": this.state.reason,
     });
   }
