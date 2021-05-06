@@ -1,10 +1,6 @@
-  
-import logo from './logo.svg';
-import './App.scss';
-import LoadingZoom from './LoadingZoom'
-import LoadingSheets from './LoadingSheets'
+import logo from '../logo.svg';
 import React, { Component } from 'react';
-import firebase from './firebase';
+import firebase from '../firebase';
 
 class Report extends Component{
   constructor(props){
@@ -29,7 +25,7 @@ class Report extends Component{
     if(e.currentTarget.value == "other"){
       this.setState({reason: this.state.other}, () => {
         console.log(this.state.reason)
-      });  
+      });
     }
     else{
       this.setState({
@@ -43,19 +39,12 @@ class Report extends Component{
   onChangeOther = event => {
     this.setState({ other: event.target.value });
   };
-  
+
   render(){
     return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <h1>Why are you reporting this profile?</h1>
+    <div className="Report">
+      <h1>Why are you reporting this profile?</h1>
       <form>
-    
-
           <input type="radio" id="underage" name="neg_behavior" value="underage" onChange={this.onSelect}/>
           <label for="underage">Underage user</label><br />
           <input type="radio" id="pretending" name="neg_behavior" value="pretending"  onChange={this.onSelect}/>
@@ -73,9 +62,7 @@ class Report extends Component{
           <input type="text" id="other_text" name="neg_behavior" onChange={this.onChangeOther}/><br />
           <input type="submit" value="Report User" onClick={this.uploadReport}/>
           <input type="submit" value="Cancel" />
-
       </form>
-      </header>
     </div>
   );
   }

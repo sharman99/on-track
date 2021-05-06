@@ -1,48 +1,50 @@
+import { HashRouter, Route, Link } from 'react-router-dom';
+
 import logo from './logo.svg';
 import './App.scss';
-import LoadingZoom from './LoadingZoom'
-import LoadingSheets from './LoadingSheets'
-import SignIn from './SignIn'
-import SignUp from './signup'
-import Report from './report'
-import { HashRouter, Route, Link } from 'react-router-dom';
-import Profile from './profile';
+import Navbar from './components/navbar';
+import LoadingZoom from './pages/LoadingZoom';
+import LoadingSheets from './pages/LoadingSheets';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import Report from './pages/Report';
+import Profile from './pages/Profile';
 
 function App() {
   return (
     <div className="App">
       <HashRouter>
-        <Route 
+        <Route
           exact path='/'
           render={(props) => (
             <SignIn {...props}/>
           )}
         />
-        <Route 
+        <Route
           path='/sign_in'
           render={(props) => (
             <SignIn {...props}/>
           )}
         />
-        <Route 
+        <Route
           path='/sign_up'
           render={(props) => (
             <SignUp {...props}/>
           )}
         />
-        <Route 
+        <Route
           path='/loading_zoom'
           render={(props) => (
             <LoadingZoom {...props}/>
           )}
         />
-        <Route 
+        <Route
           path='/loading_sheets'
           render={(props) => (
             <LoadingSheets {...props}/>
           )}
         />
-        <Route 
+        <Route
           path='/report'
           render={(props) => (
             <Report {...props}/>

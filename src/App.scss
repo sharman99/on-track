@@ -1,17 +1,17 @@
-@use 'styles/globals' as *;
+@import 'styles/globals';
 
 // Text Styles
 .default-text {
   @extend %body-font;
   color: $dark;
-  font-size: 16px;
+  font-size: $base;
   line-height: 1.25;
 }
 
 .heading {
   @extend %header-font;
   color: $dark;
-  font-size: 12px;
+  font-size: $base * .75;
   line-height: 1.25;
   text-transform: uppercase;
 }
@@ -23,7 +23,7 @@
 
 .field-option {
   @extend .default-text;
-  font-size: 12px;
+  font-size: $base * .75;
 }
 
 body {
@@ -32,13 +32,15 @@ body {
 
 h1, h3, h4, h5, h6 {
   @extend .heading;
+  margin: $base/2 0;
 }
 
 h2 {
   @extend .field-heading;
+  margin: $base/2 0;
 }
 
-label, option {
+button, label, option {
   @extend .field-option;
 }
 
@@ -54,6 +56,17 @@ a {
   }
 }
 
+button {
+  border: none;
+  border-radius: 0;
+  text-transform: uppercase;
+  transition: .35s;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 // Spacing & Formatting
 .container {
   margin: 0px auto;
@@ -61,7 +74,4 @@ a {
   max-width: 800px;
 }
 
-.App{
-  width: 100vh;
-  height: 100vh;
-}
+@import 'styles/pages';

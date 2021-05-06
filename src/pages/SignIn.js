@@ -1,9 +1,8 @@
-import logo from './logo.svg';
-import './App.scss';
+import logo from '../logo.svg';
+import background from '../media/background.jpg';
 import TextField from '@material-ui/core/TextField';
-import background from "./green_background.jpg"
 import React, { Component } from 'react';
-import firebase from './firebase';
+import firebase from '../firebase';
 
 class SignIn extends Component{
   constructor(props){
@@ -41,35 +40,25 @@ class SignIn extends Component{
       password,
     } = this.state;
     return (
-      <div className="App"
-          style={{ backgroundImage: `url(${background})`, width:'100%', opacity:'50%', backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize: "cover"}}
-      >
-        <div id="center_square"
-            style={{ backgroundColor: 'white', position:'absolute', top:'30%', left:'30%', padding: '10%'}}
-        >
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-          </header>
-          <div>
-            <p>EMAIL</p>
+      <div className="SignIn" style={{ backgroundImage: `linear-gradient(rgba(51, 51, 51, 0.35), rgba(51, 51, 51, 0.35)), url(${background})` }}>
+          <div className="window">
+            <img src={logo} className="Logo" alt="on track logo" />
+            <h1>email</h1>
             <input className="input"
               name="email"
               value={email}
               onChange={this.onChange}
               type="email"
             />
-          </div>
-          <div>
-            <p>PASSWORD</p>
+          <h1>password</h1>
             <input className="input"
               name="password"
               value={password}
               onChange={this.onChange}
               type="password"
             />
+          <button onClick={this.signIn}>sign in</button>
           </div>
-          <button onClick={this.signIn}>SIGN IN</button>
-        </div>
       </div>
     );
   }

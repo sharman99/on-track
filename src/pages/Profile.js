@@ -1,10 +1,8 @@
-import logo from './logo.svg';
-import './App.scss';
+import logo from '../logo.svg';
 import TextField from '@material-ui/core/TextField';
-import background from "./green_background.jpg"
 import React, { Component } from 'react';
-import firebase from './firebase';
-import profile_img from "./profile_img.png"
+import firebase from '../firebase';
+import profile_img from "../profile_img.png"
 
 class Profile extends Component{
   constructor(props){
@@ -87,7 +85,7 @@ class Profile extends Component{
             <p>
                 PREVIOUS POD RATING:
             </p>
-            
+
 
         </div>
     );

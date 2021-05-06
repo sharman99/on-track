@@ -1,10 +1,6 @@
-  
-import logo from './logo.svg';
-import './App.scss';
-import LoadingZoom from './LoadingZoom'
-import LoadingSheets from './LoadingSheets'
+import logo from '../logo.svg';
 import React, { Component } from 'react';
-import firebase from './firebase';
+import firebase from '../firebase';
 
 const INITIAL_STATE = {
   email: '',
@@ -44,7 +40,7 @@ class SignUp extends Component{
     //create account for user
     firebase.auth().createUserWithEmailAndPassword(email, passwordOne)
     .then((userCredential) => {
-      // Signed in 
+      // Signed in
       var user = userCredential.user;
       console.log("SUCCESFULLY SIGNED IN")
     })
@@ -252,24 +248,24 @@ class SignUp extends Component{
       this.setState({set_private: list})
     })
   }
-  
+
   render() {
     const {
       email,
-      first_name, 
+      first_name,
       last_name,
-      pronouns, 
-      major, 
+      pronouns,
+      major,
       year,
       phone_number,
-      set_private,  
-      accountability_for, 
+      set_private,
+      accountability_for,
       estimated_hours,
       matching_preference,
       desired_frequency,
       partnership_length,
-      pod_size, 
-      accountability_style, 
+      pod_size,
+      accountability_style,
       written_answer,
       passwordOne,
       passwordTwo,
@@ -288,50 +284,50 @@ class SignUp extends Component{
           <div className="row">
               <div className="column">
                   <label for="fname">First name:</label>
-                  <input 
-                    type="text" 
-                    id="fname" 
-                    name="fname" 
+                  <input
+                    type="text"
+                    id="fname"
+                    name="fname"
                     value={first_name}
-                    onChange={this.onChange}/><br /> <br /> 
+                    onChange={this.onChange}/><br /> <br />
                   <label for="lname">Last name:</label>
-                  <input 
-                    type="text" 
-                    id="lname" 
-                    name="lname" 
+                  <input
+                    type="text"
+                    id="lname"
+                    name="lname"
                     value={last_name}
-                    onChange={this.onChange}/><br /><br /> 
+                    onChange={this.onChange}/><br /><br />
                   <label for="pronouns">Pronouns (optional):</label>
-                  <input 
-                    type="text" 
-                    id="pronouns" 
-                    name="pronouns" 
+                  <input
+                    type="text"
+                    id="pronouns"
+                    name="pronouns"
                     value={pronouns}
-                    onChange={this.onChange}/><br /><br /> 
+                    onChange={this.onChange}/><br /><br />
                   <label for="major">Major:</label>
-                  <input 
-                    type="text" 
-                    id="major" 
-                    name="major" 
+                  <input
+                    type="text"
+                    id="major"
+                    name="major"
                     value={major}
-                    onChange={this.onChange}/><br /><br /> 
-                  
-              </div> 
+                    onChange={this.onChange}/><br /><br />
+
+              </div>
               <div className="column">
                   <label for="year">Year:</label>
-                  <input 
-                    type="text" 
-                    id="year" 
-                    name="year" 
+                  <input
+                    type="text"
+                    id="year"
+                    name="year"
                     value={year}
-                    onChange={this.onChange} /><br /><br /> 
+                    onChange={this.onChange} /><br /><br />
                   <label for="number">Phone number:</label>
-                  <input 
-                    type="text" 
-                    id="number" 
-                    name="phone_number" 
+                  <input
+                    type="text"
+                    id="number"
+                    name="phone_number"
                     value={phone_number}
-                    onChange={this.onChange}/><br /><br /> 
+                    onChange={this.onChange}/><br /><br />
                   <label for="email">Email:</label>
                   <input className="input"
                     name="email"
@@ -348,7 +344,7 @@ class SignUp extends Component{
                   onChange={this.onChange}
                   type="password"
                   placeholder="Password"
-                /><br /><br /> 
+                /><br /><br />
                 <label for="year">Confirm Password:</label>
                 <input className="input"
                   name="passwordTwo"
@@ -363,19 +359,19 @@ class SignUp extends Component{
 
               <p>Check the fields you would like to remain private:</p>
               <input type="checkbox" id="fname" name="fname" value="fname" onChange={this.remainPrivate}/>
-              <label for="fname">First Name</label>  
+              <label for="fname">First Name</label>
               <input type="checkbox" id="lname" name="lname" value="lname" onChange={this.remainPrivate}/>
-              <label for="lname">Last Name</label>   
+              <label for="lname">Last Name</label>
               <input type="checkbox" id="pronouns" name="pronouns" value="pronouns" onChange={this.remainPrivate}/>
-              <label for="pronouns">Pronouns</label>    
+              <label for="pronouns">Pronouns</label>
               <input type="checkbox" id="major" name="major" value="major" onChange={this.remainPrivate}/>
-              <label for="major">Major</label>    
+              <label for="major">Major</label>
               <input type="checkbox" id="year" name="year" value="year" onChange={this.remainPrivate}/>
-              <label for="year">Year</label> 
+              <label for="year">Year</label>
               <input type="checkbox" id="number" name="number" value="number" onChange={this.remainPrivate}/>
-              <label for="number">Phone Number</label> 
-              <input type="checkbox" id="email" name="email" value="email" onChange={this.remainPrivate}/>  
-              <label for="email">Email</label> 
+              <label for="number">Phone Number</label>
+              <input type="checkbox" id="email" name="email" value="email" onChange={this.remainPrivate}/>
+              <label for="email">Email</label>
             </div>
 
 
@@ -384,10 +380,10 @@ class SignUp extends Component{
               <div className="column">
               </div>
           </div>
-      
+
           <p>What would you like to be held accountable for?</p>
           <input type="checkbox" id="technical" name="work_type" value="technical" onChange={this.workOptions}/>
-          <label for=" technical">Technical work (eg. coding)</label><br /> 
+          <label for=" technical">Technical work (eg. coding)</label><br />
           <input type="checkbox" id="psets" name="work_type" value="psets" onChange={this.workOptions}/>
           <label for="sheet">Problem sets</label><br />
           <input type="checkbox" id="text" name="work_type" value="readings" onChange={this.workOptions}/>
@@ -401,10 +397,10 @@ class SignUp extends Component{
           <input type="checkbox" id="text" name="work_type" value="other" onChange={this.workOptions}/>
           <label for="text">Other</label>
           <input type="text" id="other" name="other"  onChange={this.otherWorkOptions}/><br /><br />
-      
+
           <label for="work_hours">Weekly estimated hours of work</label>
-          <select 
-            name="work_hours" 
+          <select
+            name="work_hours"
             id="work_hours"
             defaultValue="work_hours5"
             onChange={this.handleWorkHours}>
@@ -440,17 +436,17 @@ class SignUp extends Component{
 
           <p>Accountability pod size</p>
           <input type="checkbox" id="pod1" name="pod1" value="1" onChange={this.podSize}/>
-          <label for="pod1">1</label>  
+          <label for="pod1">1</label>
           <input type="checkbox" id="pod2" name="pod2" value="2" onChange={this.podSize}/>
-          <label for="pod2">2</label>  
+          <label for="pod2">2</label>
           <input type="checkbox" id="pod3" name="pod3" value="3" onChange={this.podSize} />
-          <label for="pod3">3</label>  
+          <label for="pod3">3</label>
           <input type="checkbox" id="pod4" name="pod4" value="4" onChange={this.podSize}/>
-          <label for="pod4">4</label>   
-          
+          <label for="pod4">4</label>
+
           <p>Style of accountability</p>
           <input type="checkbox" id="zoom" name="zoom" value="zoom" onChange={this.accountabilityOptions}/>
-          <label for="zoom">Zoom meetings working together</label><br /> 
+          <label for="zoom">Zoom meetings working together</label><br />
           <input type="checkbox" id="sheet" name="sheet" value="sheet" onChange={this.accountabilityOptions}/>
           <label for="sheet">Tracking hours of work on a Google Sheet</label><br />
           <input type="checkbox" id="text" name="text" value="text" onChange={this.accountabilityOptions}/>
@@ -458,7 +454,7 @@ class SignUp extends Component{
 
           <label for="accountability_strategy">How might you and your partner(s) make sure that you're keeping up with work?</label><br />
           <input type="text" id="accountability_strategy" name="accountability_strategy" onChange={this.onChangeWritten}/><br /><br />
-        
+
           <input type="submit" id="create_account" value="Create Account" onClick={this.createAccount}/>
       </form>
         </header>

@@ -1,0 +1,61 @@
+.SignIn {
+  width: 100vw;
+  height: 100vh;
+
+  display: grid;
+  align-content: center;
+  justify-content: center;
+
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  .window {
+    width: 600px;
+    height: 450px;
+    box-sizing: border-box;
+    padding: 10%;
+
+    display: grid;
+    align-content: center;
+    justify-items: center;
+
+    background-color: $light;
+
+    .Logo {
+      margin-bottom: $base * 2;
+    }
+
+    h1, input, button {
+      width: 100%;
+    }
+
+    input {
+      @extend .default-text;
+      background-color: transparent;
+      transition: .35s;
+
+      margin-bottom: $base;
+      border: none;
+      border-bottom: 2px solid $dark;
+      outline: 0;
+
+      &:focus {
+        border-bottom: 2px solid $green;
+      }
+    }
+
+    button {
+      background-color: $green;
+      color: $light;
+
+      box-sizing: border-box;
+      padding: $base/4;
+
+      &:hover {
+        background-color: $dark;
+      }
+    }
+  }
+}
