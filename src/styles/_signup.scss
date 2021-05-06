@@ -1,0 +1,11 @@
+.SignUp {
+  @extend .container;
+
+  .basic-info {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(10, auto);
+    grid-column-gap: 48px;
+  }
+}

@@ -44,14 +44,14 @@ class SignIn extends Component{
           <div className="window">
             <img src={logo} className="Logo" alt="on track logo" />
             <h1>email</h1>
-            <input className="input"
+            <input className="input-text"
               name="email"
               value={email}
               onChange={this.onChange}
               type="email"
             />
           <h1>password</h1>
-            <input className="input"
+            <input className="input-text"
               name="password"
               value={password}
               onChange={this.onChange}

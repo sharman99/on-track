@@ -42,29 +42,43 @@ class Report extends Component{
 
   render(){
     return (
-    <div className="Report">
-      <h1>Why are you reporting this profile?</h1>
-      <form>
-          <input type="radio" id="underage" name="neg_behavior" value="underage" onChange={this.onSelect}/>
-          <label for="underage">Underage user</label><br />
-          <input type="radio" id="pretending" name="neg_behavior" value="pretending"  onChange={this.onSelect}/>
-          <label for="pretending">Pretending to be someone else</label><br />
-          <input type="radio" id="bullying" name="neg_behavior" value="bullying" onChange={this.onSelect}/>
-          <label for="bullying">Bullying or harrassment</label><br />
-          <input type="radio" id="scam" name="neg_behavior" value="scam" onChange={this.onSelect}/>
-          <label for="scam">Scam or fraud</label><br />
-          <input type="radio" id="hurting" name="neg_behavior" value="hurting" onChange={this.onSelect}/>
-          <label for="hurting">At risk of hurting themselves or others</label><br />
-          <input type="radio" id="not_participating" name="neg_behavior" value="not_participating" onChange={this.onSelect}/>
-          <label for="not_participating">Not participating in accountability mechanisms</label><br />
-          <input type="radio" id="other" name="neg_behavior" value="other" onChange={this.onSelect}/>
-          <label for="other">Other</label>
-          <input type="text" id="other_text" name="neg_behavior" onChange={this.onChangeOther}/><br />
+      <div className="Report">
+        <form>
+          <h1>Why are you reporting this profile?</h1>
+          <label for="underage">
+            <input type="radio" id="underage" name="neg_behavior" value="underage" onChange={this.onSelect}/>
+            Underage user
+          </label>
+          <label for="pretending">
+            <input type="radio" id="pretending" name="neg_behavior" value="pretending"  onChange={this.onSelect}/>
+            Pretending to be someone else
+          </label>
+          <label for="bullying">
+            <input type="radio" id="bullying" name="neg_behavior" value="bullying" onChange={this.onSelect}/>
+            Bullying or harrassment
+          </label>
+          <label for="scam">
+            <input type="radio" id="scam" name="neg_behavior" value="scam" onChange={this.onSelect}/>
+            Scam or fraud
+          </label>
+          <label for="hurting">
+            <input type="radio" id="hurting" name="neg_behavior" value="hurting" onChange={this.onSelect}/>
+            At risk of hurting themselves or others
+          </label>
+          <label for="not_participating">
+            <input type="radio" id="not_participating" name="neg_behavior" value="not_participating" onChange={this.onSelect}/>
+            Not participating in accountability mechanisms
+          </label>
+          <label for="other">
+            <input type="radio" id="other" name="neg_behavior" value="other" onChange={this.onSelect}/>
+            Other:
+            <input type="text" id="other_text" name="neg_behavior" onChange={this.onChangeOther}/>
+          </label>
           <input type="submit" value="Report User" onClick={this.uploadReport}/>
-          <input type="submit" value="Cancel" />
-      </form>
-    </div>
-  );
+          <a>cancel</a>
+        </form>
+      </div>
+    );
   }
 }
 

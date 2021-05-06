@@ -31,27 +31,9 @@
       width: 100%;
     }
 
-    input {
-      @extend .default-text;
-      background-color: transparent;
-      transition: .35s;
-
-      margin-bottom: $base;
-      border: none;
-      border-bottom: 2px solid $dark;
-      outline: 0;
-
-      &:focus {
-        border-bottom: 2px solid $green;
-      }
-    }
-
     button {
       background-color: $green;
       color: $light;
-
-      box-sizing: border-box;
-      padding: $base/4;
 
       &:hover {
         background-color: $dark;

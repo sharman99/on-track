@@ -56,14 +56,39 @@ a {
   }
 }
 
-button {
+button, input[type="submit"] {
   border: none;
   border-radius: 0;
   text-transform: uppercase;
   transition: .35s;
+  box-sizing: border-box;
+  padding: $base/2;
 
   &:hover {
     cursor: pointer;
+  }
+}
+
+label {
+  display: block;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input[type="text"], .input-text {
+  @extend .default-text;
+  background-color: transparent;
+  transition: .35s;
+
+  margin-bottom: $base*2;
+  border: none;
+  border-bottom: 2px solid $dark;
+  outline: 0;
+
+  &:focus {
+    border-bottom: 2px solid $green;
   }
 }
 
