@@ -6,6 +6,7 @@ import SignIn from './SignIn'
 import SignUp from './signup'
 import Report from './report'
 import { HashRouter, Route, Link } from 'react-router-dom';
+import Profile from './profile';
 
 function App() {
   return (
@@ -45,6 +46,12 @@ function App() {
           path='/report'
           render={(props) => (
             <Report {...props}/>
+          )}
+        />
+        <Route
+          path='/profile'
+          render={(props) => (
+            <Profile {...props}/>
           )}
         />
       </HashRouter>
