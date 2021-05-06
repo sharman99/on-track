@@ -4,6 +4,7 @@ import LoadingZoom from './LoadingZoom'
 import LoadingSheets from './LoadingSheets'
 import SignIn from './SignIn'
 import SignUp from './signup'
+import Report from './report'
 import { HashRouter, Route, Link } from 'react-router-dom';
 
 function App() {
@@ -38,6 +39,12 @@ function App() {
           path='/loading_sheets'
           render={(props) => (
             <LoadingSheets {...props}/>
+          )}
+        />
+        <Route 
+          path='/report'
+          render={(props) => (
+            <Report {...props}/>
           )}
         />
       </HashRouter>
