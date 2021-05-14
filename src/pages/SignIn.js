@@ -35,6 +35,11 @@ class SignIn extends Component{
     });
   }
 
+  //Amy added this in to route create account button to sign up page
+  createAccount = event => {
+    this.props.history.push('/sign_up');
+  }
+
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -63,6 +68,7 @@ class SignIn extends Component{
               type="password"
             />
           <button onClick={this.signIn}>sign in</button>
+          <button onClick={this.createAccount}>create account</button>
           </div>
       </div>
     );

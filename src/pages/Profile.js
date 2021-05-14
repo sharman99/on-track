@@ -25,21 +25,7 @@ class Profile extends Component{
   }
 
   reportUser = event => {
-      //CHANGE THIS BELOW TO BE ABOUT REPORTING USER
-    event.preventDefault();
-    const {email, password} = this.state;
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Signed in
-      var user = userCredential.user;
-      console.log("SUCCESFULLY SIGNED IN")
-    })
-    .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log("ERROR SIGNING IN")
-      console.log(errorMessage)
-    });
+      this.props.history.push('/report');
   }
 
   render() {

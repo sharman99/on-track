@@ -45,6 +45,7 @@ class SignUp extends Component{
       console.log("SUCCESFULLY SIGNED IN")
       
       //TODO: re-route to next page here
+      this.props.history.push('/waiting_period');
     })
     .catch((error) => {
       var errorCode = error.code;

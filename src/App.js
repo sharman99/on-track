@@ -9,6 +9,8 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Report from './pages/Report';
 import Profile from './pages/Profile';
+import WaitingPeriod from './pages/WaitingPeriod'
+import ReportRecorded from './pages/ReportRecorded'
 
 function App() {
   return (
@@ -54,6 +56,18 @@ function App() {
           path='/profile'
           render={(props) => (
             <Profile {...props}/>
+          )}
+        />
+        <Route
+          path='/waiting_period'
+          render={(props) => (
+            <WaitingPeriod {...props}/>
+          )}
+        />
+        <Route
+          path='/report_recorded'
+          render={(props) => (
+            <ReportRecorded {...props}/>
           )}
         />
       </HashRouter>
