@@ -9,8 +9,19 @@ class Profile extends Component{
   constructor(props){
     super(props);
     this.state={
-
+      temp: "",
     }
+  }
+
+  componentDidMount(){
+    const db = firebase.firestore();
+
+    //get the "a" variable from database 
+    db.collection("blah").doc("hello").get().then((doc) => {
+      //setting the state variable called "temp" to the variable in the doc with the name "a"
+      this.setState({cs: doc.data().cs})
+      this.setState({temp_val: doc.data().temp_val})
+    })
   }
 
   reportUser = event => {
@@ -38,6 +49,9 @@ class Profile extends Component{
     } = this.state;
     return (
       <div className="Profile">
+        {/*This is how we display state variables. Below we are displaying the state variables called "temp_val" and "cs"*/}
+        <div>{this.state.temp_val}</div>
+        <div>{this.state.cs}</div>
         <div>
           <h1>profile</h1>
           <button className="report-button" onClick={this.reportUser}>report user</button>

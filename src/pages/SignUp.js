@@ -43,6 +43,8 @@ class SignUp extends Component{
       // Signed in
       var user = userCredential.user;
       console.log("SUCCESFULLY SIGNED IN")
+      
+      //TODO: re-route to next page here
     })
     .catch((error) => {
       var errorCode = error.code;
