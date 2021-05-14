@@ -42,7 +42,7 @@ class SignUp extends Component{
     .then((userCredential) => {
       // Signed in
       var user = userCredential.user;
-      console.log("SUCCESFULLY SIGNED IN")
+      console.log("SUCCESFULLY CREATED ACCOUNT")
       
       //TODO: re-route to next page here
       this.props.history.push('/waiting_period');
@@ -50,7 +50,7 @@ class SignUp extends Component{
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log("ERROR SIGNING IN")
+      console.log("ERROR CREATING ACCOUNT")
       console.log(errorMessage)
     });
 

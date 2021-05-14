@@ -11,6 +11,7 @@ import Report from './pages/Report';
 import Profile from './pages/Profile';
 import WaitingPeriod from './pages/WaitingPeriod'
 import ReportRecorded from './pages/ReportRecorded'
+import YourProfile from './pages/YourProfile'
 
 function App() {
   return (
@@ -68,6 +69,12 @@ function App() {
           path='/report_recorded'
           render={(props) => (
             <ReportRecorded {...props}/>
+          )}
+        />
+        <Route
+          path='/your_profile'
+          render={(props) => (
+            <YourProfile {...props}/>
           )}
         />
       </HashRouter>

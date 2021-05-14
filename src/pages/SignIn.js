@@ -25,7 +25,7 @@ class SignIn extends Component{
       //TODO: set the signed-in user's email as a state in App.js
       
       //copy the below to re-route to new page (change '/profile' to the link you want them to go to)
-      this.props.history.push('/profile');
+      this.props.history.push('/your_profile');
     })
     .catch((error) => {
       var errorCode = error.code;
