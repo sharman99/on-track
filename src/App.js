@@ -9,6 +9,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Report from './pages/Report';
 import Profile from './pages/Profile';
+import Pod from './pages/Pod';
 
 function App() {
   return (
@@ -54,6 +55,12 @@ function App() {
           path='/profile'
           render={(props) => (
             <Profile {...props}/>
+          )}
+        />
+        <Route
+          path='/pod'
+          render={(props) => (
+            <Pod {...props}/>
           )}
         />
       </HashRouter>
