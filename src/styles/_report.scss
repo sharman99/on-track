@@ -11,10 +11,42 @@
   }
 
   input[type="text"] {
-    margin-bottom: 0;
+    margin: $base/2 0;
+    width: 100%;
   }
 
   input[type="radio"] {
-    margin-right: 8px;
+    margin-right: $base/2;
+  }
+
+  input[type="submit"] {
+    background-color: $dark;
+    color: $light;
+    border: 2px solid transparent;
+    width: 120px;
+
+    &:hover {
+      background-color: white;
+      color: $dark;
+      border: 2px solid $dark;
+    }
+  }
+
+  div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      color: $dark;
+      font-size: $base*.75;
+      border-bottom: 1px solid $dark;
+
+      &:hover {
+        cursor: pointer;
+        border-bottom: 1px solid transparent;
+      }
+    }
   }
 }

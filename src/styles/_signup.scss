@@ -1,11 +1,51 @@
 .SignUp {
   @extend .container;
 
-  .basic-info {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(10, auto);
-    grid-column-gap: 48px;
+  label {
+    margin: $base/2 0;
   }
+
+  div {
+    margin-bottom: $base*3;
+  }
+
+  .basic-info {
+    @extend %columns;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(10, auto);
+  }
+
+  .private-info {
+    @extend %columns;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(4, auto);
+  }
+
+  .preferences {
+    .split {
+      @extend %columns;
+      grid-auto-flow: row;
+
+      div {
+        margin-bottom: $base;
+      }
+    }
+  }
+
+  input[type="submit"] {
+    margin-bottom: $base*3;
+    background-color: $dark;
+    color: $light;
+    width: 150px;
+
+    &:hover {
+      background-color: $green;
+    }
+  }
+}
+
+%columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 48px;
 }

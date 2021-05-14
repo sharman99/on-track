@@ -2,7 +2,8 @@ import logo from '../logo.svg';
 import TextField from '@material-ui/core/TextField';
 import React, { Component } from 'react';
 import firebase from '../firebase';
-import profile_img from "../profile_img.png"
+import profile_img from "../media/profile_img.png";
+import Person from "../media/profile.json";
 
 class Profile extends Component{
   constructor(props){
@@ -36,58 +37,22 @@ class Profile extends Component{
       password,
     } = this.state;
     return (
-        <div className="App">
-            <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            </header>
-
-            <p>
-                PROFILE
-            </p>
-
-            <button onClick={this.reportUser}>REPORT USER</button>
-
-            <p>
-                ANSEL DAVIS (HE/THEY)
-            </p>
-
-            <img src={profile_img} className="App-logo" alt="profile_img" />
-
-
-            <p>
-                HUMAN BIOLOGY
-            </p>
-
-            <p>
-                JUNIOR
-            </p>
-
-            <p>
-                MESSENGER, TEXT
-            </p>
-
-            <p>
-                ADDITIONAL INFO
-            </p>
-
-            <p>
-                TYPES OF WORK: ESSAYS, PSETS, READINGS
-            </p>
-
-            <p>
-                HOURS / WEEK: 20
-            </p>
-
-            <p>
-                GOALS: COMPLETE SENIOR THESIS
-            </p>
-
-            <p>
-                PREVIOUS POD RATING:
-            </p>
-
-
+      <div className="Profile">
+        <div>
+          <h1>profile</h1>
+          <button className="report-button" onClick={this.reportUser}>report user</button>
         </div>
+        <img src={profile_img} alt="profile picture" />
+        <h2>{Person.firstname} {Person.lastname} ({Person.pronouns})</h2>
+        <p>{Person.major}</p>
+        <p>{Person.year}</p>
+        <p>{Person.communication.join(', ')}</p>
+        <h2>additional info</h2>
+        <p>types of work: {Person.work.join(', ')}</p>
+        <p>hours / week: {Person.hours}</p>
+        <p>goals: {Person.goals.join(', ')}</p>
+        <p>previous pod rating: {Person.rating}/5</p>
+      </div>
     );
   }
 }

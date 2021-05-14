@@ -44,7 +44,7 @@ class Report extends Component{
     return (
       <div className="Report">
         <form>
-          <h1>Why are you reporting this profile?</h1>
+          <h2>Why are you reporting this profile?</h2>
           <label for="underage">
             <input type="radio" id="underage" name="neg_behavior" value="underage" onChange={this.onSelect}/>
             Underage user
@@ -72,10 +72,12 @@ class Report extends Component{
           <label for="other">
             <input type="radio" id="other" name="neg_behavior" value="other" onChange={this.onSelect}/>
             Other:
-            <input type="text" id="other_text" name="neg_behavior" onChange={this.onChangeOther}/>
+            <input type="text" name="neg_behavior" onChange={this.onChangeOther}/>
           </label>
-          <input type="submit" value="Report User" onClick={this.uploadReport}/>
-          <a>cancel</a>
+          <div>
+            <input type="submit" value="Report User" onClick={this.uploadReport}/>
+            <a>cancel</a>
+          </div>
         </form>
       </div>
     );

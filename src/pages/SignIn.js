@@ -43,14 +43,14 @@ class SignIn extends Component{
       <div className="SignIn" style={{ backgroundImage: `linear-gradient(rgba(51, 51, 51, 0.35), rgba(51, 51, 51, 0.35)), url(${background})` }}>
           <div className="window">
             <img src={logo} className="Logo" alt="on track logo" />
-            <h1>email</h1>
+            <h2>email</h2>
             <input className="input-text"
               name="email"
               value={email}
               onChange={this.onChange}
               type="email"
             />
-          <h1>password</h1>
+          <h2>password</h2>
             <input className="input-text"
               name="password"
               value={password}

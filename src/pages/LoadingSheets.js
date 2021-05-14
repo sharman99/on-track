@@ -2,13 +2,9 @@ import logo from '../logo.svg';
 
 function LoadingZoom() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          REDIRECTING YOU TO YOUR POD'S GOOGLE SHEET...
-        </p>
-      </header>
+    <div className="Sheets">
+      <h3>click on the following link to go to your pod's google sheet</h3>
+      <a>link to google sheet</a>
     </div>
   );
 }

@@ -277,50 +277,49 @@ class SignUp extends Component{
           <h2>Basic Info</h2>
 
           <div className="basic-info">
-            <label for="fname">First name:</label>
+            <label className="field-heading" for="fname">First name</label>
             <input
               type="text"
               id="fname"
               name="fname"
               value={first_name}
               onChange={this.onChange}/>
-            <label for="lname">Last name:</label>
+            <label className="field-heading" for="lname">Last name</label>
             <input
               type="text"
               id="lname"
               name="lname"
               value={last_name}
               onChange={this.onChange}/>
-            <label for="pronouns">Pronouns (optional):</label>
+            <label className="field-heading" for="pronouns">Pronouns (optional)</label>
             <input
               type="text"
               id="pronouns"
               name="pronouns"
               value={pronouns}
               onChange={this.onChange}/>
-            <label for="major">Major:</label>
+            <label className="field-heading" for="major">Major</label>
             <input
               type="text"
               id="major"
               name="major"
               value={major}
               onChange={this.onChange}/>
-
-            <label for="year">Year:</label>
+            <label className="field-heading" for="year">Year</label>
             <input
               type="text"
               id="year"
               name="year"
               value={year}
               onChange={this.onChange} />
-            <label for="number">Phone number:</label>
+            <label className="field-heading" for="number">Phone number</label>
             <input
               type="text"
               id="number"
               name="phone_number"
               value={phone_number}
               onChange={this.onChange}/>
-            <label for="email">Email:</label>
+            <label className="field-heading" for="email">Email</label>
             <input className="input-text"
               id="email"
               name="email"
@@ -328,7 +327,7 @@ class SignUp extends Component{
               onChange={this.onChange}
               type="email"
               />
-            <label for="passwordOne">Password:</label>
+            <label className="field-heading" for="passwordOne">Password</label>
             <input className="input-text"
               id="passwordOne"
               name="passwordOne"
@@ -336,7 +335,7 @@ class SignUp extends Component{
               onChange={this.onChange}
               type="password"
               />
-            <label for="passwordTwo">Confirm Password:</label>
+            <label className="field-heading" for="passwordTwo">Confirm Password</label>
             <input className="input-text"
               id="passwordTwo"
               name="passwordTwo"
@@ -347,126 +346,171 @@ class SignUp extends Component{
             {passwordOne !== passwordTwo && <div style={{ color: 'red'}}> Passwords must match.</div>}
             {passwordOne != null && passwordOne.length < 6 && <div style={{ color: 'red'}}> Password must be at least 6 characters.</div>}
           </div>
-          <h2>Check the fields you would like to remain private:</h2>
-          <label>
-            <input type="checkbox" name="fname" value="fname" onChange={this.remainPrivate}/>
-            First Name
-          </label>
-          <label>
-            <input type="checkbox" name="lname" value="lname" onChange={this.remainPrivate}/>
-            Last Name
-          </label>
-          <label>
-            <input type="checkbox" name="pronouns" value="pronouns" onChange={this.remainPrivate}/>
-            Pronouns
-          </label>
-          <label>
-            <input type="checkbox" name="major" value="major" onChange={this.remainPrivate}/>
-            Major
-          </label>
-          <label>
-            <input type="checkbox" name="year" value="year" onChange={this.remainPrivate}/>
-            Year
-          </label>
-          <label>
-            <input type="checkbox" name="number" value="number" onChange={this.remainPrivate}/>
-            Phone Number
-          </label>
-          <label>
-            <input type="checkbox" name="email" value="email" onChange={this.remainPrivate}/>
-            Email
-          </label>
+
+          <h2>Check the fields you would like to remain private</h2>
+          <div className="private-info">
+            <label>
+              <input type="checkbox" name="fname" value="fname" onChange={this.remainPrivate}/>
+              First Name
+            </label>
+            <label>
+              <input type="checkbox" name="lname" value="lname" onChange={this.remainPrivate}/>
+              Last Name
+            </label>
+            <label>
+              <input type="checkbox" name="pronouns" value="pronouns" onChange={this.remainPrivate}/>
+              Pronouns
+            </label>
+            <label>
+              <input type="checkbox" name="major" value="major" onChange={this.remainPrivate}/>
+              Major
+            </label>
+            <label>
+              <input type="checkbox" name="year" value="year" onChange={this.remainPrivate}/>
+              Year
+            </label>
+            <label>
+              <input type="checkbox" name="number" value="number" onChange={this.remainPrivate}/>
+              Phone Number
+            </label>
+            <label>
+              <input type="checkbox" name="email" value="email" onChange={this.remainPrivate}/>
+              Email
+            </label>
+          </div>
 
           <h2>Accountability Preferences</h2>
 
-          <p>What would you like to be held accountable for?</p>
+          <div className="preferences">
+            <h3>What would you like to be held accountable for?</h3>
+            <div className="split">
+              <label>
+                <input type="checkbox" name="work_type" value="technical" onChange={this.workOptions}/>
+                Technical work (eg. coding)
+              </label>
+              <label>
+                <input type="checkbox" name="work_type" value="psets" onChange={this.workOptions}/>
+                Problem sets
+              </label>
+              <label>
+                <input type="checkbox" name="work_type" value="readings" onChange={this.workOptions}/>
+                Readings
+              </label>
+              <label>
+                <input type="checkbox" name="work_type" value="essays" onChange={this.workOptions}/>
+                Essays
+              </label>
+              <label>
+                <input type="checkbox" name="work_type" value="projects" onChange={this.workOptions}/>
+                Projects
+              </label>
+              <label>
+                <input type="checkbox" name="work_type" value="personal_goals" onChange={this.workOptions}/>
+                Personal goals
+              </label>
+              <label>
+                <input type="checkbox" name="work_type" value="other" onChange={this.workOptions}/>
+                Other:
+                <input type="text" name="other" onChange={this.otherWorkOptions}/>
+              </label>
+            </div>
 
-          <label>
-            <input type="checkbox" name="work_type" value="technical" onChange={this.workOptions}/>
-            Technical work (eg. coding)
-          </label>
-          <label>
-            <input type="checkbox" name="work_type" value="psets" onChange={this.workOptions}/>
-            Problem sets
-          </label>
-          <label>
-            <input type="checkbox" name="work_type" value="readings" onChange={this.workOptions}/>
-            Readings
-          </label>
-          <label>
-            <input type="checkbox" name="work_type" value="essays" onChange={this.workOptions}/>
-            Essays
-          </label>
-          <label>
-            <input type="checkbox" name="work_type" value="projects" onChange={this.workOptions}/>
-            Projects
-          </label>
-          <label>
-            <input type="checkbox" name="work_type" value="personal_goals" onChange={this.workOptions}/>
-            Personal goals
-          </label>
-          <label>
-            <input type="checkbox" name="work_type" value="other" onChange={this.workOptions}/>
-            Other:
-            <input type="text" name="other" onChange={this.otherWorkOptions}/>
-          </label>
+            <div className="split">
+              <div>
+                <label for="work_hours">Weekly estimated hours of work</label>
+                <select
+                  name="work_hours"
+                  id="work_hours"
+                  defaultValue="work_hours5"
+                  onChange={this.handleWorkHours}>
+                  <option value="work_hours5">5</option>
+                  <option value="work_hours10">10</option>
+                  <option value="work_hours15">15</option>
+                  <option value="work_hours20">20</option>
+                  <option value="work_hours25">25</option>
+                  <option value="work_hours30">30</option>
+                </select>
+              </div>
 
-          <label for="work_hours">Weekly estimated hours of work</label>
-          <select
-            name="work_hours"
-            id="work_hours"
-            defaultValue="work_hours5"
-            onChange={this.handleWorkHours}>
-            <option value="work_hours5">5</option>
-            <option value="work_hours10">10</option>
-            <option value="work_hours15">15</option>
-            <option value="work_hours20">20</option>
-            <option value="work_hours25">25</option>
-            <option value="work_hours30">30</option>
-          </select>
+              <div>
+                <h3>Matching preference</h3>
+                <label for="quarter">
+                  <input type="radio" id="random" name="matching_preference" value="random" onChange={this.onSelectMatchingPreference}/>
+                  A random person
+                </label>
+                <label for="known">
+                  <input type="radio" id="known" name="matching_preference" value="known" onChange={this.onSelectMatchingPreference}/>
+                  Someone I know:
+                  <input type="text" id="partner_name" name="partner_name" onChange={this.otherPartner}/>
+                </label>
+              </div>
 
-          <p>Matching preference</p>
-          <input type="radio" id="random" name="matching_preference" value="random" onChange={this.onSelectMatchingPreference}/>
-          <label for="quarter">A random person</label>
-          <input type="radio" id="known" name="matching_preference" value="known" onChange={this.onSelectMatchingPreference}/>
-          <label for="known">Someone I know</label>
-          <input type="text" id="partner_name" name="partner_name" onChange={this.otherPartner}/>
+              <div>
+                <h3>Desired Frequency of check-ins</h3>
+                <label for="daily">
+                  <input type="radio" id="daily" name="check_frequency" value="daily" onChange={this.onSelectDesiredFrequency}/>
+                  Daily
+                </label>
+                <label for="weekly">
+                  <input type="radio" id="weekly" name="check_frequency" value="weekly" onChange={this.onSelectDesiredFrequency}/>
+                  Weekly
+                </label>
+                <label for="quarterly">
+                  <input type="radio" id="quarterly" name="check_frequency" value="quarterly" onChange={this.onSelectDesiredFrequency}/>
+                  Quarterly
+                </label>
+              </div>
 
-          <p>Desired Frequency of check-ins</p>
-          <input type="radio" id="daily" name="check_frequency" value="daily" onChange={this.onSelectDesiredFrequency}/>
-          <label for="daily">Daily</label>
-          <input type="radio" id="weekly" name="check_frequency" value="weekly" onChange={this.onSelectDesiredFrequency}/>
-          <label for="weekly">Weekly</label>
-          <input type="radio" id="quarterly" name="check_frequency" value="quarterly" onChange={this.onSelectDesiredFrequency}/>
-          <label for="quarterly">Quarterly</label>
+              <div>
+                <h3>Length of partnership</h3>
+                <label for="quarter">
+                  <input type="radio" id="quarter" name="partnership_length" value="quarter" onChange={this.onSelectPartnershipLength}/>
+                  Quarter
+                </label>
+                <label for="year">
+                  <input type="radio" id="year" name="partnership_length" value="year" onChange={this.onSelectPartnershipLength}/>
+                  Year
+                </label>
+              </div>
+            </div>
 
-          <p>Length of partnership</p>
-          <input type="radio" id="quarter" name="partnership_length" value="quarter" onChange={this.onSelectPartnershipLength}/>
-          <label for="quarter">Quarter</label>
-          <input type="radio" id="year" name="partnership_length" value="year" onChange={this.onSelectPartnershipLength}/>
-          <label for="year">Year</label>
+            <h3>Accountability pod size</h3>
+            <div className="split">
+              <label for="pod1">
+                <input type="checkbox" id="pod1" name="pod1" value="1" onChange={this.podSize}/>
+                1
+              </label>
+              <label for="pod2">
+                <input type="checkbox" id="pod2" name="pod2" value="2" onChange={this.podSize}/>
+                2
+              </label>
+              <label for="pod3">
+                <input type="checkbox" id="pod3" name="pod3" value="3" onChange={this.podSize} />
+                3
+              </label>
+              <label for="pod4">
+                <input type="checkbox" id="pod4" name="pod4" value="4" onChange={this.podSize}/>
+                4
+              </label>
+            </div>
 
+            <h3>Style of accountability</h3>
+            <label for="zoom">
+              <input type="checkbox" id="zoom" name="zoom" value="zoom" onChange={this.accountabilityOptions}/>
+              Zoom meetings working together
+            </label>
+            <label for="sheet">
+              <input type="checkbox" id="sheet" name="sheet" value="sheet" onChange={this.accountabilityOptions}/>
+              Tracking hours of work on a Google Sheet
+            </label>
+            <label for="text">
+              <input type="checkbox" id="text" name="text" value="text" onChange={this.accountabilityOptions}/>
+              Text check-ins
+            </label>
 
-          <p>Accountability pod size</p>
-          <input type="checkbox" id="pod1" name="pod1" value="1" onChange={this.podSize}/>
-          <label for="pod1">1</label>
-          <input type="checkbox" id="pod2" name="pod2" value="2" onChange={this.podSize}/>
-          <label for="pod2">2</label>
-          <input type="checkbox" id="pod3" name="pod3" value="3" onChange={this.podSize} />
-          <label for="pod3">3</label>
-          <input type="checkbox" id="pod4" name="pod4" value="4" onChange={this.podSize}/>
-          <label for="pod4">4</label>
-
-          <p>Style of accountability</p>
-          <input type="checkbox" id="zoom" name="zoom" value="zoom" onChange={this.accountabilityOptions}/>
-          <label for="zoom">Zoom meetings working together</label>
-          <input type="checkbox" id="sheet" name="sheet" value="sheet" onChange={this.accountabilityOptions}/>
-          <label for="sheet">Tracking hours of work on a Google Sheet</label>
-          <input type="checkbox" id="text" name="text" value="text" onChange={this.accountabilityOptions}/>
-          <label for="text">Text check-ins</label>
-
-          <label for="accountability_strategy">How might you and your partner(s) make sure that you're keeping up with work?</label>
-          <input type="text" id="accountability_strategy" name="accountability_strategy" onChange={this.onChangeWritten}/>
+            <label for="accountability_strategy">How might you and your partner(s) make sure that you're keeping up with work?</label>
+            <input type="text" id="accountability_strategy" name="accountability_strategy" onChange={this.onChangeWritten}/>
+          </div>
 
           <input type="submit" id="create_account" value="Create Account" onClick={this.createAccount}/>
         </form>

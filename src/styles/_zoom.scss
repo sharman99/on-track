@@ -4,5 +4,10 @@
 
   display: grid;
   align-content: center;
-  justify-content: center;
+  justify-items: center;
+
+  a {
+    display: inline;
+    text-transform: uppercase;
+  }
 }

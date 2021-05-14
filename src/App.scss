@@ -11,7 +11,6 @@
 .heading {
   @extend %header-font;
   color: $dark;
-  font-size: $base * .75;
   line-height: 1.25;
   text-transform: uppercase;
 }
@@ -19,6 +18,7 @@
 .field-heading {
   @extend .default-text;
   text-transform: uppercase;
+  margin: $base/2 0;
 }
 
 .field-option {
@@ -28,14 +28,24 @@
 
 body {
   @extend .default-text;
+  color: $dark;
 }
 
-h1, h3, h4, h5, h6 {
+h1, h2, h4, h5, h6 {
   @extend .heading;
   margin: $base/2 0;
 }
 
+h1 {
+  font-size: $base;
+  margin: $base 0;
+}
+
 h2 {
+  font-size: $base * .75;
+}
+
+h3 {
   @extend .field-heading;
   margin: $base/2 0;
 }
@@ -63,6 +73,7 @@ button, input[type="submit"] {
   transition: .35s;
   box-sizing: border-box;
   padding: $base/2;
+  margin: 0;
 
   &:hover {
     cursor: pointer;
@@ -82,14 +93,20 @@ input[type="text"], .input-text {
   background-color: transparent;
   transition: .35s;
 
-  margin-bottom: $base*2;
+  margin: 0;
+  padding: 1px 0;
+  margin-bottom: $base*1.5;
   border: none;
-  border-bottom: 2px solid $dark;
+  border-bottom: 1px solid $dark;
   outline: 0;
 
   &:focus {
-    border-bottom: 2px solid $green;
+    border-bottom: 1px solid $green;
   }
+}
+
+input[type="radio"] {
+  outline: 0;
 }
 
 // Spacing & Formatting
