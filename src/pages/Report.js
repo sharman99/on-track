@@ -1,12 +1,14 @@
 import logo from '../logo.svg';
 import React, { Component } from 'react';
 import firebase from '../firebase';
+var moment = require('moment-timezone');
 
 class Report extends Component{
   constructor(props){
     super(props);
     this.state={
       reportedUser:"temp", //TODO: get this as a prop from last page
+      report_unfilled: false,
     }
     this.onSelect = this.onSelect.bind(this);
     this.uploadReport = this.uploadReport.bind(this);
@@ -15,11 +17,20 @@ class Report extends Component{
 
   uploadReport = event => {
     event.preventDefault();
-    const db = firebase.firestore();
-    const addReport = db.collection("reportedUsers").doc(this.state.reportedUser).set({
-      "reason": this.state.reason,
-    });
-    this.props.history.push('/report_recorded');
+
+    if(this.state.reason == null || this.state.reason === "undefined"){
+      this.setState({report_unfilled: true})
+    }
+    else{
+      var options = { hour12: false };
+      let time = moment().tz("America/Los_Angeles").format('MM-DD-YYYY_HH:mm:ss');
+
+      const db = firebase.firestore();
+      const addReport = db.collection("reportedUsers").doc(this.state.reportedUser).update({
+        [time]: this.state.reason,
+      });
+      this.props.history.push('/report_recorded');
+    }
   }
 
   onSelect(e){
@@ -75,6 +86,7 @@ class Report extends Component{
             Other:
             <input type="text" name="neg_behavior" onChange={this.onChangeOther}/>
           </label>
+          {this.state.report_unfilled && <div style={{ color: 'red'}}> You must pick a reason.</div>}
           <div>
             <input type="submit" value="Report User" onClick={this.uploadReport}/>
             <a>cancel</a>

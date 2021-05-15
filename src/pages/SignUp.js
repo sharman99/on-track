@@ -16,8 +16,7 @@ class SignUp extends Component{
       podOptions: [],
       workAccOptions: [],
       private: [],
-
-
+      form_unfilled: false,
     }
     this.createAccount = this.createAccount.bind(this)
     this.onSelectPartnershipLength = this.onSelectPartnershipLength.bind(this)
@@ -37,96 +36,131 @@ class SignUp extends Component{
     const {email, passwordOne} = this.state;
     console.log(email)
 
-    //create account for user
-    firebase.auth().createUserWithEmailAndPassword(email, passwordOne)
-    .then((userCredential) => {
-      // Signed in
-      var user = userCredential.user;
-      console.log("SUCCESFULLY CREATED ACCOUNT")
-      
-      //TODO: re-route to next page here
-      this.props.history.push('/waiting_period');
-    })
-    .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log("ERROR CREATING ACCOUNT")
-      console.log(errorMessage)
-    });
-
     if(this.state.fname == null || this.state.fname === "undefined"){
-      this.state.fname = ""
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.fname = ""
     }
     if(this.state.lname == null || this.state.lname === "undefined"){
-      this.state.lname = ""
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.lname = ""
     }
     if(this.state.estimated_hours == null || this.state.estimated_hours === "undefined"){
-      this.state.estimated_hours = ""
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.estimated_hours = ""
     }
     if(this.state.pronouns == null || this.state.pronouns === "undefined"){
-      this.state.pronouns = ""
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.pronouns = ""
     }
     if(this.state.major == null || this.state.major === "undefined"){
-      this.state.major = ""
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.major = ""
     }
     if(this.state.phone_number == null || this.state.phone_number === "undefined"){
-      this.state.phone_number = ""
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.phone_number = ""
     }
     if(this.state.matching_preference == null || this.state.matching_preference === "undefined"){
-      this.state.matching_preference = ""
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.matching_preference = ""
     }
     if(this.state.desired_frequency == null || this.state.desired_frequency === "undefined"){
-      this.state.desired_frequency = ""
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.desired_frequency = ""
     }
     if(this.state.partnership_length == null || this.state.partnership_length === "undefined"){
-      this.state.partnership_length = ""
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.partnership_length = ""
     }
     if(this.state.written_answer == null || this.state.written_answer === "undefined"){
-      this.state.written_answer = ""
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.written_answer = ""
     }
     if(this.state.pod_size == null || this.state.pod_size === "undefined"){
-      this.state.pod_size = ""
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.pod_size = ""
     }
     if(this.state.accountability_style == null || this.state.accountability_style === "undefined"){
-      this.state.accountability_style = ""
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.accountability_style = ""
     }
     if(this.state.set_private == null || this.state.set_private === "undefined"){
-      this.state.set_private = ""
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.set_private = ""
     }
     if(this.state.accountability_for == null || this.state.accountability_for === "undefined"){
-      this.state.accountability_for = ""
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.accountability_for = ""
     }
-    //attach values to user in database
-    const db = firebase.firestore();
-    const addReport = db.collection("userInfo").doc(email).set({
-      "first_name": this.state.fname,
-      "last_name": this.state.lname,
-      "pronouns": this.state.pronouns,
-      "major": this.state.major,
-      "phone_number": this.state.phone_number,
-      "estimated_hours": this.state.estimated_hours,
-      "matching_preference": this.state.matching_preference,
-      "desired_frequency": this.state.desired_frequency,
-      "partnership_length": this.state.partnership_length,
-      "written_answer": this.state.written_answer,
-      "pod_size": this.state.pod_size,
-      "accountability_style": this.state.accountability_style,
-      "set_private": this.state.set_private,
-      "accountability_for": this.state.accountability_for,
-    });
+    else{
+      if(!this.state.form_unfilled){
+        //create account for user
+        firebase.auth().createUserWithEmailAndPassword(email, passwordOne)
+        .then((userCredential) => {
+          // Signed in
+          var user = userCredential.user;
+          console.log("SUCCESFULLY CREATED ACCOUNT")
+          
+          //TODO: re-route to next page here
+          this.props.history.push('/waiting_period');
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log("ERROR CREATING ACCOUNT")
+          console.log(errorMessage)
+        });
+
+        //attach values to user in database
+        const db = firebase.firestore();
+        const addReport = db.collection("userInfo").doc(email).set({
+          "first_name": this.state.fname,
+          "last_name": this.state.lname,
+          "pronouns": this.state.pronouns,
+          "major": this.state.major,
+          "phone_number": this.state.phone_number,
+          "estimated_hours": this.state.estimated_hours,
+          "matching_preference": this.state.matching_preference,
+          "desired_frequency": this.state.desired_frequency,
+          "partnership_length": this.state.partnership_length,
+          "written_answer": this.state.written_answer,
+          "pod_size": this.state.pod_size,
+          "accountability_style": this.state.accountability_style,
+          "set_private": this.state.set_private,
+          "accountability_for": this.state.accountability_for,
+        });
+      }
+    }
   }
 
   onChange = event => {
+    this.setState({form_unfilled: false})
     this.setState({ [event.target.name]: event.target.value });
   };
 
   handleWorkHours(e){
+    this.setState({form_unfilled: false})
     this.setState({estimated_hours: e.target.value}, () => {
       console.log(this.state.estimated_hours)
     })
   }
 
   onSelectMatchingPreference(e){
+    this.setState({form_unfilled: false})
     if(e.currentTarget.value == "known"){
       this.setState({
         matching_preference: this.state.matching_preference_other
@@ -144,6 +178,7 @@ class SignUp extends Component{
   }
 
   onSelectDesiredFrequency(e){
+    this.setState({form_unfilled: false})
     this.setState({
       desired_frequency: e.currentTarget.value
     }, () => {
@@ -152,6 +187,7 @@ class SignUp extends Component{
   }
 
   onSelectPartnershipLength(e){
+    this.setState({form_unfilled: false})
     this.setState({
       partnership_length: e.currentTarget.value
     }, () => {
@@ -160,14 +196,17 @@ class SignUp extends Component{
   }
 
   otherPartner = event => {
+    this.setState({form_unfilled: false})
     this.setState({ matching_preference_other: event.target.value });
   };
 
   onChangeWritten = event => {
+    this.setState({form_unfilled: false})
     this.setState({ written_answer: event.target.value });
   };
 
   podSize(e){
+    this.setState({form_unfilled: false})
     const podOptions = this.state.podOptions
     if(e.target.checked){
       podOptions.push(e.target.value)
@@ -187,6 +226,7 @@ class SignUp extends Component{
   }
 
   accountabilityOptions(e){
+    this.setState({form_unfilled: false})
     const options = this.state.options
     if(e.target.checked){
       options.push(e.target.value)
@@ -206,6 +246,7 @@ class SignUp extends Component{
   }
 
   workOptions(e){
+    this.setState({form_unfilled: false})
     const options = this.state.workAccOptions
     if(e.target.checked){
       if(e.target.value == "other"){
@@ -230,10 +271,12 @@ class SignUp extends Component{
   }
 
   otherWorkOptions = event => {
+    this.setState({form_unfilled: false})
     this.setState({ work_other: event.target.value });
   };
 
   remainPrivate(e){
+    this.setState({form_unfilled: false})
     const options = this.state.private
     if(e.target.checked){
       options.push(e.target.value)
@@ -514,6 +557,8 @@ class SignUp extends Component{
             <label for="accountability_strategy">How might you and your partner(s) make sure that you're keeping up with work?</label>
             <input type="text" id="accountability_strategy" name="accountability_strategy" onChange={this.onChangeWritten}/>
           </div>
+
+          {this.state.form_unfilled && <div style={{ color: 'red'}}> You must answer all items in the form before signing up.</div>}
 
           <input type="submit" id="create_account" value="Create Account" onClick={this.createAccount}/>
         </form>
