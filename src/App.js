@@ -9,7 +9,13 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Report from './pages/Report';
 import Profile from './pages/Profile';
+<<<<<<< HEAD
 import Pod from './pages/Pod';
+=======
+import WaitingPeriod from './pages/WaitingPeriod'
+import ReportRecorded from './pages/ReportRecorded'
+import YourProfile from './pages/YourProfile'
+>>>>>>> 4cb947666a179ec5c0a641056ae250cec937f539
 
 function App() {
   return (
@@ -56,6 +62,24 @@ function App() {
           render={(props) => (
             <Profile {...props}/>
           )}
+        />
+        <Route
+          path='/waiting_period'
+          render={(props) => (
+            <WaitingPeriod {...props}/>
+          )}
+        />
+        <Route
+          path='/report_recorded'
+          render={(props) => (
+            <ReportRecorded {...props}/>
+          )}
+        />
+        <Route
+          path='/your_profile'
+          render={(props) => (
+            <YourProfile {...props}/>
+          path='/pod'
         />
         <Route
           path='/pod'

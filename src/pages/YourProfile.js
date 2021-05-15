@@ -2,10 +2,10 @@ import logo from '../logo.svg';
 import TextField from '@material-ui/core/TextField';
 import React, { Component } from 'react';
 import firebase from '../firebase';
-import profile_img from "../media/profile_img.png";
+import your_profile_img from "../media/your_profile_img.png";
 import Person from "../media/profile.json";
 
-class Profile extends Component{
+class YourProfile extends Component{
   constructor(props){
     super(props);
     this.state={
@@ -24,7 +24,7 @@ class Profile extends Component{
     })
   }
 
-  reportUser = event => {
+  editProfile = event => {
       this.props.history.push('/report');
   }
 
@@ -39,10 +39,10 @@ class Profile extends Component{
         <div>{this.state.temp_val}</div>
         <div>{this.state.cs}</div>
         <div>
-          <h1>profile</h1>
-          <button className="report-button" onClick={this.reportUser}>report user</button>
+          <h1>my profile</h1>
+          <button className="report-button" onClick={this.editProfile}>edit profile</button>
         </div>
-        <img src={profile_img} alt="profile picture" />
+        <img src={your_profile_img} alt="your profile picture" />
         <h2>{Person.firstname} {Person.lastname} ({Person.pronouns})</h2>
         <p>{Person.major}</p>
         <p>{Person.year}</p>
@@ -57,4 +57,4 @@ class Profile extends Component{
   }
 }
 
-export default Profile;
+export default YourProfile;

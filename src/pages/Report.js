@@ -19,6 +19,7 @@ class Report extends Component{
     const addReport = db.collection("reportedUsers").doc(this.state.reportedUser).set({
       "reason": this.state.reason,
     });
+    this.props.history.push('/report_recorded');
   }
 
   onSelect(e){

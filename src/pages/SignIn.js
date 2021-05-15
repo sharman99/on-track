@@ -21,6 +21,11 @@ class SignIn extends Component{
       // Signed in
       var user = userCredential.user;
       console.log("SUCCESFULLY SIGNED IN")
+
+      //TODO: set the signed-in user's email as a state in App.js
+      
+      //copy the below to re-route to new page (change '/profile' to the link you want them to go to)
+      this.props.history.push('/your_profile');
     })
     .catch((error) => {
       var errorCode = error.code;
@@ -28,6 +33,11 @@ class SignIn extends Component{
       console.log("ERROR SIGNING IN")
       console.log(errorMessage)
     });
+  }
+
+  //Amy added this in to route create account button to sign up page
+  createAccount = event => {
+    this.props.history.push('/sign_up');
   }
 
   onChange = event => {
@@ -58,6 +68,7 @@ class SignIn extends Component{
               type="password"
             />
           <button onClick={this.signIn}>sign in</button>
+          <button onClick={this.createAccount}>create account</button>
           </div>
       </div>
     );
