@@ -410,7 +410,7 @@ class SignUp extends Component{
               </label>
               <label>
                 <input type="checkbox" name="work_type" value="other" onChange={this.workOptions}/>
-                Other:
+                Other:&nbsp;
                 <input type="text" name="other" onChange={this.otherWorkOptions}/>
               </label>
             </div>
@@ -434,13 +434,13 @@ class SignUp extends Component{
 
               <div>
                 <h3>Matching preference</h3>
-                <label for="quarter">
+                <label for="random">
                   <input type="radio" id="random" name="matching_preference" value="random" onChange={this.onSelectMatchingPreference}/>
                   A random person
                 </label>
                 <label for="known">
                   <input type="radio" id="known" name="matching_preference" value="known" onChange={this.onSelectMatchingPreference}/>
-                  Someone I know:
+                  Someone I know:&nbsp;
                   <input type="text" id="partner_name" name="partner_name" onChange={this.otherPartner}/>
                 </label>
               </div>
@@ -467,8 +467,8 @@ class SignUp extends Component{
                   <input type="radio" id="quarter" name="partnership_length" value="quarter" onChange={this.onSelectPartnershipLength}/>
                   Quarter
                 </label>
-                <label for="year">
-                  <input type="radio" id="year" name="partnership_length" value="year" onChange={this.onSelectPartnershipLength}/>
+                <label for="year_length">
+                  <input type="radio" id="year_length" name="partnership_length" value="year" onChange={this.onSelectPartnershipLength}/>
                   Year
                 </label>
               </div>

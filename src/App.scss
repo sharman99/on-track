@@ -105,8 +105,9 @@ input[type="text"], .input-text {
   }
 }
 
-input[type="radio"] {
+input[type="radio"], input[type="checkbox"] {
   outline: 0;
+  margin-right: $base/2;
 }
 
 // Spacing & Formatting
