@@ -14,13 +14,15 @@ class YourProfile extends Component{
   }
 
   componentDidMount(){
-    //this is how you recieve the props variable sent from the last page
+    //this is how to check if the person is signed in and reroute to sign in page if not
     if(this.props.location.state.signed_in_email  == null || this.props.location.state.signed_in_email == undefined){
       console.log("rerouting to sign in")
       this.props.history.push('/sign_in');
     }
     else{
-      console.log(this.props.location.state.signed_in_email)
+      //this is how you recieve the props variable sent from the last page
+      let x = (this.props.location.state.signed_in_email)
+
       const db = firebase.firestore();
 
       //get the "a" variable from database 
