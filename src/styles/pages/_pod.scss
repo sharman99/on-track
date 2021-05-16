@@ -1,20 +1,60 @@
 .Pod {
+  .container {
+    position: relative;
+  }
+
+  .Platforms {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    a {
+      margin-left: $base;
+      border-bottom: none;
+    }
+  }
+
   .profiles {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
+    margin: $base * 2;
   }
 
   .icon {
-    width: 120px;
+    width: 160px;
     display: flex;
     flex-flow: column nowrap;
     text-align: center;
     align-items: center;
 
     img {
-      width: 100%;
+      width: 60%;
+    }
+
+    h2 {
+      font-weight: 400;
+
+    }
+  }
+
+  .icon.You {
+    h2 {
+      font-weight: 600;
+    }
+  }
+
+  .split {
+    @extend %columns;
+    grid-auto-flow: row;
+
+    div {
+      margin-bottom: $base;
+    }
+
+    img {
+      width: 80px;
     }
   }
 }

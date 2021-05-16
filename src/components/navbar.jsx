@@ -7,9 +7,9 @@ function Navbar() {
       <nav className="container">
         <img src={logo} className="Logo" alt="on track logo" />
         <ul>
-          <li>My Profile</li>
-          <li>Accountability Pod</li>
-          <li>Sign Out</li>
+          <li><a>My Profile</a></li>
+          <li><a>Accountability Pod</a></li>
+          <li><a>Sign Out</a></li>
         </ul>
       </nav>
     </div>

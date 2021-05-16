@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import profile_img from "../media/profile_img.png";
 import Profiles from "../media/profiles.json";
-
+import Navbar from "../components/navbar.jsx";
 
 class Pod extends Component{
   constructor(props){
@@ -16,12 +16,12 @@ class Pod extends Component{
       <div className="Pod">
         <div className="container">
           <h1>your accountability pod</h1>
-          <nav>
+          <nav className="Platforms">
             <a>Zoom</a>
             <a>Google Sheets</a>
           </nav>
           <div className="profiles">
-            <div className="icon">
+            <div className="icon You">
               <img src={profile_img} alt="profile picture" />
               <h2>Person.firstname Person.lastname</h2>
               <h2>(Person.pronouns)</h2>
