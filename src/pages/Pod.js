@@ -1,11 +1,8 @@
 import profile_img from "../media/profile_img.png";
 import Profiles from "../media/profiles.json";
-<<<<<<< HEAD
 import Navbar from "../components/navbar.jsx";
-=======
 import React, { Component } from 'react';
 import firebase from '../firebase';
->>>>>>> 0148c8e5cf98465f89c388e4524dfee6b9ac6f49
 
 class Pod extends Component{
   constructor(props){
@@ -173,7 +170,7 @@ class Pod extends Component{
       <div className="Pod">
         <div className="container">
           <h1>your accountability pod</h1>
-          <nav>
+          <nav className="Platforms">
             <a onClick={this.incrementLinkClick}>Zoom</a>
             <a onClick={this.incrementLinkClick}>Google Sheets</a>
           </nav>
