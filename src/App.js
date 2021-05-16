@@ -17,6 +17,7 @@ import YourProfile from './pages/YourProfile'
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <HashRouter>
         <Route
           exact path='/'

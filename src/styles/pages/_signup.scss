@@ -1,5 +1,9 @@
 .SignUp {
   @extend .container;
+  position: relative;
+  z-index: 101;
+  background-color: white;
+  padding-top: 60px;
 
   label {
     margin: $base/2 0;

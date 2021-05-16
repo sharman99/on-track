@@ -34,7 +34,7 @@ class YourProfile extends Component{
     db.collection("userInfo").doc(this.curr_email).get().then((doc) => {
       //setting the state variable called "temp" to the variable in the doc with the name "a"
       console.log("curr email", this.curr_email)
-      
+
       this.setState({firstname: doc.data().first_name})
       this.setState({lastname: doc.data().last_name})
       this.setState({pronouns: doc.data().pronouns})
@@ -80,26 +80,29 @@ class YourProfile extends Component{
       password,
     } = this.state;
     return (
-      <div className="My Profile">
+      <div className="Profile">
         {/*This is how we display state variables. Below we are displaying the state variables called "temp_val" and "cs"*/}
         <div>{this.state.temp_val}</div>
         <div>{this.state.cs}</div>
         <div>
           <h1>profile</h1>
         </div>
-        <img class = "prof" src={your_profile_img} alt="profile picture" />
-
-        <h2>{this.state.firstname} {this.state.lastname} ({this.state.pronouns})</h2>
-        <p>{this.state.major}</p>
-        <p>{this.state.year}</p>
-        <p>{this.state.communication}</p>
-        <h2>additional info</h2>
-        <p>types of work: {this.state.work}</p>
-        <p>hours / week: {this.state.hours}</p>
-        <p>goals: {this.state.goals}</p>
-        <p class="rate_text">previous pod rating:</p>
-        <img class = "rate" src={this.state.rating} alt="rating" />
-
+        <div className="split">
+          <div className="profile-image">
+            <img className="prof" src={your_profile_img} alt="profile picture" />
+          </div>
+          <div>
+            <h2>{this.state.firstname} {this.state.lastname} ({this.state.pronouns})</h2>
+            {this.state.major && <p>major: {this.state.major}</p>}
+            {this.state.year && <p>year: {this.state.year}</p>}
+            {this.state.communication && <p>communication: {this.state.communication}</p>}
+            <h2>additional info</h2>
+            {this.state.work && <p>types of work: {this.state.work}</p>}
+            {this.state.hours && <p>hours / week: {this.state.hours}</p>}
+            {this.state.goals && <p>goals: {this.state.goals}</p>}
+            <p className="rate_text">previous pod rating: <img className="rate" src={this.state.rating} alt="rating" /></p>
+          </div>
+        </div>
       </div>
     );
   }

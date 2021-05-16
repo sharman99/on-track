@@ -1,6 +1,7 @@
 .Profile {
   @extend .container;
 
+  margin-top: 100px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -11,8 +12,6 @@
     margin: $base*.5 0;
   }
 
-  p.rate{
-  }
   h2 {
     margin: $base 0;
   }
@@ -25,11 +24,14 @@
     border: 4px solid $green;
     border-radius: 50%;
   }
-  img.rate {
-    width: 170px;
-    height: 30px;
 
+  img.rate {
+    display: inline-block;
+    width: 140px;
+    height: 20px;
+    vertical-align: text-bottom;
   }
+
   .report-button {
     background-color: $dark;
     color: $light;
@@ -41,6 +43,17 @@
 
     &:hover {
       background-color: $coral;
+    }
+  }
+
+  .split {
+    @extend %columns;
+    grid-auto-flow: row;
+
+    .profile-image {
+      display: grid;
+      align-content: center;
+      justify-content: center;
     }
   }
 }

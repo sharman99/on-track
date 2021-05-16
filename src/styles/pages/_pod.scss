@@ -1,4 +1,6 @@
 .Pod {
+  margin-top: 100px;
+  
   .container {
     position: relative;
   }
@@ -17,7 +19,6 @@
   .profiles {
     display: flex;
     flex-flow: row nowrap;
-    align-items: center;
     justify-content: space-between;
     margin: $base * 2;
   }

@@ -30,7 +30,7 @@ class Profile extends Component{
       //console.log(this.props.location.state.current_profile)
       const db = firebase.firestore();
 
-    //get the "a" variable from database 
+    //get the "a" variable from database
     db.collection("userInfo").doc("test3@stanford.edu").get().then((doc) => {
       //setting the state variable called "temp" to the variable in the doc with the name "a"
       this.setState({firstname: doc.data().first_name})
@@ -87,18 +87,22 @@ class Profile extends Component{
           <h1>profile</h1>
           <button className="report-button" onClick={this.reportUser}>report user</button>
         </div>
-        <img class = "prof" src={profile_img} alt="profile picture" />
-
-        <h2>{this.state.firstname} {this.state.lastname} ({this.state.pronouns})</h2>
-        <p>{this.state.major}</p>
-        <p>{this.state.year}</p>
-        <p>{this.state.communication}</p>
-        <h2>additional info</h2>
-        <p>types of work: {this.state.work}</p>
-        <p>hours / week: {this.state.hours}</p>
-        <p>goals: {this.state.goals}</p>
-        <p class="rate_text">previous pod rating:</p>
-        <img class = "rate" src={this.state.rating} alt="rating" />
+        <div className="split">
+          <div className="profile-image">
+            <img className="prof" src={profile_img} alt="profile picture" />
+          </div>
+          <div>
+            <h2>{this.state.firstname} {this.state.lastname} ({this.state.pronouns})</h2>
+            {this.state.major && <p>major: {this.state.major}</p>}
+            {this.state.year && <p>year: {this.state.year}</p>}
+            {this.state.communication && <p>communication: {this.state.communication}</p>}
+            <h2>additional info</h2>
+            {this.state.work && <p>types of work: {this.state.work}</p>}
+            {this.state.hours && <p>hours / week: {this.state.hours}</p>}
+            {this.state.goals && <p>goals: {this.state.goals}</p>}
+            <p className="rate_text">previous pod rating: <img className="rate" src={this.state.rating} alt="rating" /></p>
+          </div>
+        </div>
         </div>
 
     );
