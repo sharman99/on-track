@@ -9,14 +9,17 @@ class Pod extends Component{
   constructor(props){
     super(props);
     this.state={
-
+      array: [],
     }
     this.curr_email = localStorage.getItem('email');
     this.incrementLinkClick = this.incrementLinkClick.bind(this);
+    this.checkProgress = this.checkProgress.bind(this);
+    this.inside = this.inside.bind(this)
   }
 
   componentDidMount(){
     const db = firebase.firestore();
+    this.checkProgress();
 
        this.curr_pod = "pod2"
        db.collection("podInfo").doc("pod2").get().then((doc) => {
@@ -109,12 +112,12 @@ class Pod extends Component{
     const db = firebase.firestore();
 
     var today = new Date();
-    console.log(today)
+    //console.log(today)
 
     var date_created = today;
     var meeting_frequency_days = 7;
 
-    db.collection("podInfo").doc(this.curr_pod).get().then((doc) => {
+    db.collection("podInfo").doc("pod2").get().then((doc) => {
       date_created = new Date(doc.data().date_created);
       console.log("date created: " + date_created)
       meeting_frequency_days = doc.data().meeting_frequency_days;
@@ -145,58 +148,83 @@ class Pod extends Component{
   checkProgress(){
     const db = firebase.firestore();
 
-    var today = new Date();
-    console.log(today)
+    var date_created = new Date();
+    var meeting_frequency_days = 7;
 
     db.collection("podInfo").doc("pod2").get().then((doc) => {
       this.setState({date_created: doc.data().date_created})
       this.setState({meeting_freq: doc.data().meeting_frequency_days})
       this.setState({num_members: doc.data().num_members})
+      date_created = new Date(doc.data().date_created);
+      meeting_frequency_days = doc.data().meeting_frequency_days;
     })
     .then(doc => {
-      var difference_in_time = today.getTime() - this.date_created.getTime();
-
+      var today = new Date();
+      
+      var difference_in_time = today.getTime() - date_created.getTime();
+      
       // To calculate the number of days between two dates
       var difference_in_days = difference_in_time / (1000 * 3600 * 24);
 
-      var expected_meetings = difference_in_days / this.meeting_frequency_days
+      var expected_meetings = difference_in_days / meeting_frequency_days
+      console.log(meeting_frequency_days)
       var curr_week = Math.ceil(expected_meetings)
-      console.log(curr_week)
 
-      var imgArray = new Array();
+      this.state.array= new Array(curr_week);
 
-      // const db = firebase.firestore();
-      for (var i = 1; i <= curr_week; i++) {
-        db.collection("podInfo").doc(this.curr_pod).collection("meetingHistory").doc("meeting_" + i).get().then((doc) => {
-          //if doc doesnt exist then no one has clicked on a meeting/sheets link or haven't met yet for the week?
-          imgArray[i] = new Image();
-          
-          //https://stackoverflow.com/questions/54675346/is-it-possible-to-find-the-number-of-fields-in-firebase-firestore-document-how-c
-          var map = doc.getData();
-          console.log(map)
-          if (this.num_members != String.valueOf(map.size())) {
-            //display sad plant
-            imgArray[i].src = unhealthy_plant_img;
-          }
-          else {
-            //display happy plant
-            imgArray[i].src = healthy_plant_img;
-          }
-        });
+      console.log(this.state.array)
+
+      
+      for (var j = 1; j < curr_week;j++) {
+        console.log("j below first time")
+        console.log(j)
+        console.log(curr_week)
+        console.log("loop")
+        this.inside(j)
       }
-
-      for (i=0; i<imgArray.length; i++) {
-        document.write(imgArray[i])
-      }
-
   });
 }
 
+inside(j) {
+  const db = firebase.firestore();
+  const settings_ref = db.collection("podInfo").doc("pod2").collection("meetingHistory").doc("meeting_" + j);
+        settings_ref.get()
+        .then(snap =>{
+          console.log("i below")
+          console.log(j)
+          
+          const data = snap.data();
+          var count = 0
+          
+          for (const key in data) {
+              const value = data[key];
+
+              count = count + 1
+          }
+
+          
+          if (this.state.num_members != count) {
+            //display sad plant
+            this.state.array[j-1] = unhealthy_plant_img;
+            console.log("sad")
+          }
+          else {
+            //display happy plant
+            this.state.array[j-1] = healthy_plant_img;
+            console.log("happy")
+          }
+
+          console.log("hello")
+          console.log(count)
+          console.log("size below")
+          console.log(this.state.array)
+        })
+}
+
   render() {
-    const {
-      email,
-      password,
-    } = this.state;
+    var images = this.state.array.map(function(image) {
+      return (<img src={image} rounded />);
+     });
     return (
       <div className="Pod">
         <div className="container">
@@ -249,9 +277,7 @@ class Pod extends Component{
               <h3>Meeting Preferences: </h3>
               <h3>Communication Preferences: </h3>
               <h3>Successful Pod Meetings: </h3>
-              <ul>
-                <script>checkProgress();</script>
-              </ul>
+              {images}
             </div>
             <div>
               <h2>Pod Member of the Week</h2>
