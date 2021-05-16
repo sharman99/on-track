@@ -17,10 +17,18 @@ class Profile extends Component{
     const db = firebase.firestore();
 
     //get the "a" variable from database 
-    db.collection("blah").doc("hello").get().then((doc) => {
+    db.collection("userInfo").doc("nesharma@stanford.edu").get().then((doc) => {
       //setting the state variable called "temp" to the variable in the doc with the name "a"
-      this.setState({cs: doc.data().cs})
-      this.setState({temp_val: doc.data().temp_val})
+      this.setState({firstname: doc.data().first_name})
+      this.setState({lastname: doc.data().last_name})
+      this.setState({pronouns: doc.data().pronouns})
+      this.setState({major: doc.data().major})
+      this.setState({year: doc.data().pronouns})
+      this.setState({communication: doc.data().pronouns})
+      this.setState({work: doc.data().pronouns})
+      this.setState({hours: doc.data().pronouns})
+      this.setState({goals: doc.data().pronouns})
+
     })
   }
 
@@ -43,13 +51,13 @@ class Profile extends Component{
           <button className="report-button" onClick={this.reportUser}>report user</button>
         </div>
         <img src={profile_img} alt="profile picture" />
-        <h2>{Person.firstname} {Person.lastname} ({Person.pronouns})</h2>
-        <p>{Person.major}</p>
+        <h2>{this.state.firstname} {this.state.lastname} ({this.state.pronouns})</h2>
+        <p>{this.state.major}</p>
         <p>{Person.year}</p>
         <p>{Person.communication.join(', ')}</p>
         <h2>additional info</h2>
         <p>types of work: {Person.work.join(', ')}</p>
-        <p>hours / week: {Person.hours}</p>
+        <p>hours / week: {this.state.hours}</p>
         <p>goals: {Person.goals.join(', ')}</p>
         <p>previous pod rating: {Person.rating}/5</p>
       </div>
