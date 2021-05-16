@@ -2,7 +2,8 @@ import logo from '../logo.svg';
 import background from '../media/background.jpg';
 import TextField from '@material-ui/core/TextField';
 import React, { Component } from 'react';
-import firebase from '../firebase';
+import firebase from '../Firebase';
+//require('firebase/auth')
 
 class SignIn extends Component{
   constructor(props){
@@ -16,18 +17,20 @@ class SignIn extends Component{
   signIn = event => {
     event.preventDefault();
     const {email, password} = this.state;
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    //firebase.doSignInWithEmailAndPassword(email, password)
+    firebase.default.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
       var user = userCredential.user;
       console.log("SUCCESFULLY SIGNED IN")
-      
+      localStorage.setItem('email', email)
+
       //this is how you push a variable to the next page
       this.props.history.push({
         pathname: '/your_profile',
         state: { signed_in_email: email}
       })
-      
+
     })
     .catch((error) => {
       var errorCode = error.code;

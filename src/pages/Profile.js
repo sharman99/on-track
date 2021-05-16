@@ -1,7 +1,7 @@
 import logo from '../logo.svg';
 import TextField from '@material-ui/core/TextField';
 import React, { Component } from 'react';
-import firebase from '../firebase';
+import firebase from '../Firebase';
 import profile_img from "../media/profile_img.png";
 import Person from "../media/profile.json";
 
@@ -11,26 +11,33 @@ class Profile extends Component{
     this.state={
       temp: "",
     }
+    this.curr_email = localStorage.getItem('email');
   }
 
   componentDidMount(){
-    //console.log(this.props.location.state.current_profile)
-    const db = firebase.firestore();
+    if(this.curr_email == null || this.curr_email == ""){
+      //not logged in so send to sign in
+      this.props.history.push('/sign_in');
+    }
+    else{
+      //console.log(this.props.location.state.current_profile)
+      const db = firebase.firestore();
 
-    //get the "a" variable from database 
-    db.collection("userInfo").doc("nesharma@stanford.edu").get().then((doc) => {
-      //setting the state variable called "temp" to the variable in the doc with the name "a"
-      this.setState({firstname: doc.data().first_name})
-      this.setState({lastname: doc.data().last_name})
-      this.setState({pronouns: doc.data().pronouns})
-      this.setState({major: doc.data().major})
-      this.setState({year: doc.data().pronouns})
-      this.setState({communication: doc.data().pronouns})
-      this.setState({work: doc.data().pronouns})
-      this.setState({hours: doc.data().pronouns})
-      this.setState({goals: doc.data().pronouns})
+      //get the "a" variable from database 
+      db.collection("userInfo").doc("nesharma@stanford.edu").get().then((doc) => {
+        //setting the state variable called "temp" to the variable in the doc with the name "a"
+        this.setState({firstname: doc.data().first_name})
+        this.setState({lastname: doc.data().last_name})
+        this.setState({pronouns: doc.data().pronouns})
+        this.setState({major: doc.data().major})
+        this.setState({year: doc.data().pronouns})
+        this.setState({communication: doc.data().pronouns})
+        this.setState({work: doc.data().pronouns})
+        this.setState({hours: doc.data().pronouns})
+        this.setState({goals: doc.data().pronouns})
 
-    })
+      })
+    }
   }
 
   reportUser = event => {

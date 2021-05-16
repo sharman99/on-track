@@ -1,6 +1,6 @@
 import logo from '../logo.svg';
 import React, { Component } from 'react';
-import firebase from '../firebase';
+import firebase from '../Firebase';
 
 const INITIAL_STATE = {
   email: '',
