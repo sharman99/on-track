@@ -55,6 +55,24 @@ class YourProfile extends Component{
       this.setState({goals: doc.data().goal})
       if (doc.data().rating == null){
         this.setState({rating: unrated})
+      }else if (doc.data().rating == "0"){
+        this.setState({rating: zerostar})
+
+      }else if (doc.data().rating == "1"){
+        this.setState({rating: onestar})
+
+      }else if (doc.data().rating == "2"){
+        this.setState({rating: twostar})
+
+      }else if (doc.data().rating == "3"){
+        this.setState({rating: threestar})
+
+      }else if (doc.data().rating == "4"){
+        this.setState({rating: fourstar})
+
+      }else if (doc.data().rating == "5"){
+        this.setState({rating: fivestar})
+
       }
 
     })
@@ -80,7 +98,6 @@ class YourProfile extends Component{
           <button className="report-button" onClick={this.reportUser}>report user</button>
         </div>
         <img class = "prof" src={your_profile_img} alt="profile picture" />
-        <img class = "rate" src={this.state.rating} alt="rating" />
 
         <h2>{this.state.firstname} {this.state.lastname} ({this.state.pronouns})</h2>
         <p>{this.state.major}</p>
@@ -90,6 +107,9 @@ class YourProfile extends Component{
         <p>types of work: {this.state.work}</p>
         <p>hours / week: {this.state.hours}</p>
         <p>goals: {this.state.goals}</p>
+        <p class="rate_text">previous pod rating:</p>
+        <img class = "rate" src={this.state.rating} alt="rating" />
+
       </div>
     );
   }

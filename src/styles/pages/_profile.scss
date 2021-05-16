@@ -11,6 +11,8 @@
     margin: $base*.5 0;
   }
 
+  p.rate{
+  }
   h2 {
     margin: $base 0;
   }
@@ -24,7 +26,9 @@
     border-radius: 50%;
   }
   img.rate {
-    width: 200px;
+    width: 170px;
+    height: 30px;
+
   }
   .report-button {
     background-color: $dark;
