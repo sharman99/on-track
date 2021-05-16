@@ -1,3 +1,20 @@
 .Pod {
-  
+  .profiles {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .icon {
+    width: 120px;
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+    }
+  }
 }

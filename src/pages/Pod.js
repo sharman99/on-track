@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import MyProfile from "../media/profile.json";
+import profile_img from "../media/profile_img.png";
 import Profiles from "../media/profiles.json";
+
 
 class Pod extends Component{
   constructor(props){
@@ -11,25 +12,6 @@ class Pod extends Component{
   }
 
   render() {
-    var icons = []
-    /*
-    icons.push(
-      <div className="icon">
-        <img src={profile_img} alt="profile picture" />
-        <h2>{Person.firstname} {Person.lastname}</h2>
-        <h2>({Person.pronouns})</h2>
-      </div>
-    );
-    for (let i = 0; i++; i < Object.keys(Profiles).length) {
-      icons.push(
-        <div className="icon">
-          <img src={profile_img} alt="profile picture" />
-          <h2>{Person.firstname} {Person.lastname}</h2>
-          <h2>({Person.pronouns})</h2>
-        </div>
-      );
-    }
-    */
     return (
       <div className="Pod">
         <div className="container">
@@ -38,8 +20,44 @@ class Pod extends Component{
             <a>Zoom</a>
             <a>Google Sheets</a>
           </nav>
-          <div>
-            
+          <div className="profiles">
+            <div className="icon">
+              <img src={profile_img} alt="profile picture" />
+              <h2>Person.firstname Person.lastname</h2>
+              <h2>(Person.pronouns)</h2>
+            </div>
+            <div className="icon">
+              <img src={profile_img} alt="profile picture" />
+              <h2>Person.firstname Person.lastname</h2>
+              <h2>(Person.pronouns)</h2>
+            </div>
+            <div className="icon">
+              <img src={profile_img} alt="profile picture" />
+              <h2>Person.firstname Person.lastname</h2>
+              <h2>(Person.pronouns)</h2>
+            </div>
+            <div className="icon">
+              <img src={profile_img} alt="profile picture" />
+              <h2>Person.firstname Person.lastname</h2>
+              <h2>(Person.pronouns)</h2>
+            </div>
+          </div>
+          <hr />
+          <div className="split">
+            <div>
+              <h2>pod info</h2>
+              <h3>Meeting Preferences: </h3>
+              <h3>Communication Preferences: </h3>
+              <h3>Successful Pod Meetings: </h3>
+            </div>
+            <div>
+              <h2>Pod Member of the Week</h2>
+              <img src={profile_img} alt="profile picture" />
+              <h3>congrats joyce sun your teammates think you rock! Keep it up</h3>
+            </div>
+            <div>
+              <h2>pod accountability performance</h2>
+            </div>
           </div>
         </div>
       </div>
