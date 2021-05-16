@@ -49,9 +49,28 @@ class Pod extends Component{
       var curr_week = Math.ceil(expected_meetings)
       console.log(curr_week)
 
-      const db = firebase.firestore();
-      const addReport = db.collection("podInfo").doc(this.curr_pod).collection("meetingHistory").doc("meeting_" + curr_week).set({
+      /*const addReport = db.collection("podInfo").doc(this.curr_pod).collection("meetingHistory").doc("meeting_" + curr_week).update({
         [this.curr_email]: 1,
+      });*/
+      const firstDocRef = db.collection("podInfo").doc(this.curr_pod).collection("meetingHistory").doc("meeting_" + curr_week)
+      const existDoc = firstDocRef.get()
+      .then((resDoc)=>{
+          if(resDoc.exists)
+          {
+            var user = this.curr_email.substring(0, this.curr_email.indexOf("@"))
+            const addReport = db.collection("podInfo").doc(this.curr_pod).collection("meetingHistory").doc("meeting_" + curr_week).update({
+              [user]: 1,
+              //[`${this.curr_email}`]: 1,
+            });
+          }
+          else
+          {
+            var user = this.curr_email.substring(0, this.curr_email.indexOf("@"))
+            const addReport = db.collection("podInfo").doc(this.curr_pod).collection("meetingHistory").doc("meeting_" + curr_week).set({
+              //[this.curr_email]: 1,
+              [user]: 1,
+            });
+          }
       });
   });
   }
