@@ -2,6 +2,8 @@ import profile_img from "../media/profile_img.png";
 import Profiles from "../media/profiles.json";
 import React, { Component } from 'react';
 import firebase from '../firebase';
+import healthy_plant_img from "../media/healthy_plant_img.png";
+import unhealthy_plant_img from "../media/unhealthy_plant_img.png";
 
 class Pod extends Component{
   constructor(props){
@@ -139,6 +141,56 @@ class Pod extends Component{
     //get the "a" variable from database 
       }
 
+  checkProgress(){
+    const db = firebase.firestore();
+
+    var today = new Date();
+    console.log(today)
+
+    db.collection("podInfo").doc("pod2").get().then((doc) => {
+      this.setState({date_created: doc.data().date_created})
+      this.setState({meeting_freq: doc.data().meeting_frequency_days})
+      this.setState({num_members: doc.data().num_members})
+    })
+    .then(doc => {
+      var difference_in_time = today.getTime() - this.date_created.getTime();
+
+      // To calculate the number of days between two dates
+      var difference_in_days = difference_in_time / (1000 * 3600 * 24);
+
+      var expected_meetings = difference_in_days / this.meeting_frequency_days
+      var curr_week = Math.ceil(expected_meetings)
+      console.log(curr_week)
+
+      var imgArray = new Array();
+
+      // const db = firebase.firestore();
+      for (var i = 1; i <= curr_week; i++) {
+        db.collection("podInfo").doc(this.curr_pod).collection("meetingHistory").doc("meeting_" + i).get().then((doc) => {
+          //if doc doesnt exist then no one has clicked on a meeting/sheets link or haven't met yet for the week?
+          imgArray[i] = new Image();
+          
+          //https://stackoverflow.com/questions/54675346/is-it-possible-to-find-the-number-of-fields-in-firebase-firestore-document-how-c
+          var map = doc.getData();
+          console.log(map)
+          if (this.num_members != String.valueOf(map.size())) {
+            //display sad plant
+            imgArray[i].src = unhealthy_plant_img;
+          }
+          else {
+            //display happy plant
+            imgArray[i].src = healthy_plant_img;
+          }
+        });
+      }
+
+      for (i=0; i<imgArray.length; i++) {
+        document.write(imgArray[i])
+      }
+
+  });
+}
+
   render() {
     const {
       email,
@@ -183,6 +235,9 @@ class Pod extends Component{
               <h3>Meeting Preferences: </h3>
               <h3>Communication Preferences: </h3>
               <h3>Successful Pod Meetings: </h3>
+              <ul>
+                <script>checkProgress();</script>
+              </ul>
             </div>
             <div>
               <h2>Pod Member of the Week</h2>
