@@ -14,12 +14,12 @@ class Pod extends Component{
   }
 
   componentDidMount(){
-    this.curr_pod = "pod1"
+       this.curr_pod = "pod2"
 
-    if(this.curr_email == null || this.curr_email == ""){
-      //not logged in so send to sign in
-      this.props.history.push('/sign_in');
-    }
+    // if(this.curr_email == null || this.curr_email == ""){
+    //   //not logged in so send to sign in
+    //   this.props.history.push('/sign_in');
+    // }
   }
 
   incrementLinkClick(){
@@ -48,13 +48,13 @@ class Pod extends Component{
       var curr_week = Math.ceil(expected_meetings)
       console.log(curr_week)
 
-      const db = firebase.firestore();
+      // const db = firebase.firestore();
       const addReport = db.collection("podInfo").doc(this.curr_pod).collection("meetingHistory").doc("meeting_" + curr_week).set({
         [this.curr_email]: 1,
       });
   });
     //console.log(this.props.location.state.current_profile)
-    const db = firebase.firestore();
+    // const db = firebase.firestore();
 
     //get the "a" variable from database 
     db.collection("podInfo").doc("pod2").get().then((doc) => {
