@@ -14,8 +14,88 @@ class Pod extends Component{
   }
 
   componentDidMount(){
-       this.curr_pod = "pod2"
+    const db = firebase.firestore();
 
+       this.curr_pod = "pod2"
+       db.collection("podInfo").doc("pod2").get().then((doc) => {
+        //setting the state variable called "temp" to the variable in the doc with the name "a"
+        this.setState({check: "check"})
+        for  (var i = 0; i < doc.data().num_members; i++) {
+          this.setState({email1: doc.data().email1});
+          db.collection("userInfo").doc(doc.data().email1).get().then((doc) => {
+            this.setState({fname1: doc.data().first_name});
+            this.setState({lname1: doc.data().last_name});
+            this.setState({pronouns1:doc.data().pronouns});
+            this.setState({email1: doc.data().email1});
+            
+          } 
+          )
+          i++;
+  
+          if (i == doc.data().num_members)
+            break;
+      
+          this.setState({email2: doc.data().email2});
+          db.collection("userInfo").doc(doc.data().email2).get().then((doc) => {
+            this.setState({fname2: doc.data().first_name});
+            this.setState({lname2: doc.data().last_name});
+            this.setState({pronouns2:doc.data().pronouns});
+            this.setState({email2: doc.data().email2});
+            
+          } 
+          )
+          i++;
+  
+          if (i == doc.data().num_members)
+            break;
+     
+            this.setState({email3: doc.data().email3});
+            db.collection("userInfo").doc(doc.data().email3).get().then((doc) => {
+              this.setState({fname3: doc.data().first_name});
+              this.setState({lname3: doc.data().last_name});
+              this.setState({pronouns3:doc.data().pronouns});
+              this.setState({email3: doc.data().email3});
+              
+            } 
+            )
+            i++;
+    
+            if (i == doc.data().num_members)
+              break;
+        
+      
+              this.setState({email4: doc.data().email4});
+              db.collection("userInfo").doc(doc.data().email4).get().then((doc) => {
+                this.setState({fname4: doc.data().first_name});
+                this.setState({lname4: doc.data().last_name});
+                this.setState({pronouns4:doc.data().pronouns});
+                this.setState({email4: doc.data().email4});
+                
+              } 
+              )
+              i++;
+      
+              if (i == doc.data().num_members)
+                break;
+                  
+        }
+  
+        // this.setState({email5: doc.data().email5});
+        // db.collection("userInfo").doc(doc.data().email5).get().then((doc) => {
+        //   this.setState({fname5: doc.data().first_name});
+        //   this.setState({lname5: doc.data().last_name});
+        //   this.setState({pronouns5:doc.data().pronouns});
+        //   this.setState({email5: doc.data().email5});
+          
+        // } 
+        // )
+  
+  
+    
+  
+  
+      })
+  
     // if(this.curr_email == null || this.curr_email == ""){
     //   //not logged in so send to sign in
     //   this.props.history.push('/sign_in');
@@ -57,85 +137,7 @@ class Pod extends Component{
     // const db = firebase.firestore();
 
     //get the "a" variable from database 
-    db.collection("podInfo").doc("pod2").get().then((doc) => {
-      //setting the state variable called "temp" to the variable in the doc with the name "a"
-      this.setState({check: "check"})
-      for  (var i = 0; i < doc.data().num_members; i++) {
-        this.setState({email1: doc.data().email1});
-        db.collection("userInfo").doc(doc.data().email1).get().then((doc) => {
-          this.setState({fname1: doc.data().first_name});
-          this.setState({lname1: doc.data().last_name});
-          this.setState({pronouns1:doc.data().pronouns});
-          this.setState({email1: doc.data().email1});
-          
-        } 
-        )
-        i++;
-
-        if (i == doc.data().num_members)
-          break;
-    
-        this.setState({email2: doc.data().email2});
-        db.collection("userInfo").doc(doc.data().email2).get().then((doc) => {
-          this.setState({fname2: doc.data().first_name});
-          this.setState({lname2: doc.data().last_name});
-          this.setState({pronouns2:doc.data().pronouns});
-          this.setState({email2: doc.data().email2});
-          
-        } 
-        )
-        i++;
-
-        if (i == doc.data().num_members)
-          break;
-   
-          this.setState({email3: doc.data().email3});
-          db.collection("userInfo").doc(doc.data().email3).get().then((doc) => {
-            this.setState({fname3: doc.data().first_name});
-            this.setState({lname3: doc.data().last_name});
-            this.setState({pronouns3:doc.data().pronouns});
-            this.setState({email3: doc.data().email3});
-            
-          } 
-          )
-          i++;
-  
-          if (i == doc.data().num_members)
-            break;
-      
-    
-            this.setState({email4: doc.data().email4});
-            db.collection("userInfo").doc(doc.data().email4).get().then((doc) => {
-              this.setState({fname4: doc.data().first_name});
-              this.setState({lname4: doc.data().last_name});
-              this.setState({pronouns4:doc.data().pronouns});
-              this.setState({email4: doc.data().email4});
-              
-            } 
-            )
-            i++;
-    
-            if (i == doc.data().num_members)
-              break;
-                
       }
-
-      // this.setState({email5: doc.data().email5});
-      // db.collection("userInfo").doc(doc.data().email5).get().then((doc) => {
-      //   this.setState({fname5: doc.data().first_name});
-      //   this.setState({lname5: doc.data().last_name});
-      //   this.setState({pronouns5:doc.data().pronouns});
-      //   this.setState({email5: doc.data().email5});
-        
-      // } 
-      // )
-
-
-  
-
-
-    })
-  }
 
   render() {
     const {
