@@ -18,11 +18,17 @@ class Profile extends Component{
     this.state={
       temp: "",
     }
+    this.curr_email = localStorage.getItem('email');
   }
 
   componentDidMount(){
-    //console.log(this.props.location.state.current_profile)
-    const db = firebase.firestore();
+    if(this.curr_email == null || this.curr_email == ""){
+      //not logged in so send to sign in
+      this.props.history.push('/sign_in');
+    }
+    else{
+      //console.log(this.props.location.state.current_profile)
+      const db = firebase.firestore();
 
     //get the "a" variable from database 
     db.collection("userInfo").doc("test3@stanford.edu").get().then((doc) => {
@@ -59,7 +65,8 @@ class Profile extends Component{
       }
 
 
-    })
+      })
+    }
   }
 
   reportUser = event => {

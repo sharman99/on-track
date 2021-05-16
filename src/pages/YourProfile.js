@@ -19,30 +19,21 @@ class YourProfile extends Component{
     this.state={
       temp: "",
     }
+    this.curr_email = localStorage.getItem('email');
   }
 
   componentDidMount(){
-    //this is how to check if the person is signed in and reroute to sign in page if not
-    if(localStorage.getItem('curr_email') == null && (this.props.location.state == undefined || this.props.location.state.signed_in_email == undefined || this.props.location.state.signed_in_email  == null)){
-      console.log("rerouting to sign in")
+    if(this.curr_email == null || this.curr_email == ""){
+      //not logged in so send to sign in
       this.props.history.push('/sign_in');
-      console.log("fail")
-  
     }
     else{
-      //this is how you recieve the props variable sent from the last page
-      if (this.props.location.state != undefined  && this.props.location.state.signed_in_email != null ){
-        localStorage.setItem( 'curr_email', this.props.location.state.signed_in_email );
-      }
-
       const db = firebase.firestore();
       console.log("success")
 
-      //get the "a" variable from database 
-    //get the "a" variable from database 
-    db.collection("userInfo").doc(localStorage.getItem('curr_email') ).get().then((doc) => {
+    db.collection("userInfo").doc(this.curr_email).get().then((doc) => {
       //setting the state variable called "temp" to the variable in the doc with the name "a"
-      console.log("curr email", localStorage.getItem('curr_email'))
+      console.log("curr email", this.curr_email)
       
       this.setState({firstname: doc.data().first_name})
       this.setState({lastname: doc.data().last_name})
