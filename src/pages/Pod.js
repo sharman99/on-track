@@ -32,7 +32,16 @@ class Pod extends Component{
     */
     return (
       <div className="Pod">
-        <h1>your accountability pod</h1>
+        <div className="container">
+          <h1>your accountability pod</h1>
+          <nav>
+            <a>Zoom</a>
+            <a>Google Sheets</a>
+          </nav>
+          <div>
+            
+          </div>
+        </div>
       </div>
     );
   }

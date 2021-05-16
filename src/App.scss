@@ -117,4 +117,19 @@ input[type="radio"], input[type="checkbox"] {
   max-width: 800px;
 }
 
+%fullscreen {
+  width: 100vw;
+  height: 100vh;
+
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+
+  a {
+    display: inline;
+    text-transform: uppercase;
+  }
+}
+
 @import 'styles/pages';

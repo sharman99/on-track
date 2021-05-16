@@ -1,3 +1,5 @@
+@import './globals';
+
 .Navbar {
   width: 100vw;
   height: 100px;
@@ -5,8 +7,15 @@
   top: 0;
   left: 0;
 
+  .container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .Logo {
-    
+
   }
 
   ul {
@@ -17,6 +26,7 @@
 
   li {
     margin: 0;
+    margin-left: $base*2;
     padding: 0;
   }
 }
