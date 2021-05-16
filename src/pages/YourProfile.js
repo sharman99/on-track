@@ -3,6 +3,14 @@ import TextField from '@material-ui/core/TextField';
 import React, { Component } from 'react';
 import firebase from '../firebase';
 import your_profile_img from "../media/your_profile_img.png";
+import onestar from "../media/1s.png";
+import twostar from "../media/2s.png";
+import threestar from "../media/3s.png";
+import fourstar from "../media/4s.png";
+import fivestar from "../media/5s.png";
+import zerostar from "../media/0s.png";
+import unrated from "../media/unrated.png";
+
 import Person from "../media/profile.json";
 
 class YourProfile extends Component{
@@ -11,27 +19,55 @@ class YourProfile extends Component{
     this.state={
       temp: "",
     }
+    this.curr_email = localStorage.getItem('email');
   }
 
   componentDidMount(){
-    //this is how to check if the person is signed in and reroute to sign in page if not
-    if(this.props.location.state.signed_in_email  == null || this.props.location.state.signed_in_email == undefined){
-      console.log("rerouting to sign in")
+    if(this.curr_email == null || this.curr_email == ""){
+      //not logged in so send to sign in
       this.props.history.push('/sign_in');
     }
     else{
-      //this is how you recieve the props variable sent from the last page
-      let x = (this.props.location.state.signed_in_email)
-
       const db = firebase.firestore();
+      console.log("success")
 
-      //get the "a" variable from database 
-      db.collection("blah").doc("hello").get().then((doc) => {
-        //setting the state variable called "temp" to the variable in the doc with the name "a"
-        this.setState({cs: doc.data().cs})
-        this.setState({temp_val: doc.data().temp_val})
-      })
-    }
+    db.collection("userInfo").doc(this.curr_email).get().then((doc) => {
+      //setting the state variable called "temp" to the variable in the doc with the name "a"
+      console.log("curr email", this.curr_email)
+      
+      this.setState({firstname: doc.data().first_name})
+      this.setState({lastname: doc.data().last_name})
+      this.setState({pronouns: doc.data().pronouns})
+      this.setState({major: doc.data().major})
+      this.setState({year: doc.data().year})
+      this.setState({communication: doc.data().accountability_style})
+      this.setState({work: doc.data().accountability_for})
+      this.setState({hours: doc.data().estimated_hours})
+      this.setState({goals: doc.data().goal})
+      if (doc.data().rating == null){
+        this.setState({rating: unrated})
+      }else if (doc.data().rating == "0"){
+        this.setState({rating: zerostar})
+
+      }else if (doc.data().rating == "1"){
+        this.setState({rating: onestar})
+
+      }else if (doc.data().rating == "2"){
+        this.setState({rating: twostar})
+
+      }else if (doc.data().rating == "3"){
+        this.setState({rating: threestar})
+
+      }else if (doc.data().rating == "4"){
+        this.setState({rating: fourstar})
+
+      }else if (doc.data().rating == "5"){
+        this.setState({rating: fivestar})
+
+      }
+
+    })
+  }
   }
 
   editProfile = event => {
@@ -44,24 +80,26 @@ class YourProfile extends Component{
       password,
     } = this.state;
     return (
-      <div className="Profile">
+      <div className="My Profile">
         {/*This is how we display state variables. Below we are displaying the state variables called "temp_val" and "cs"*/}
         <div>{this.state.temp_val}</div>
         <div>{this.state.cs}</div>
         <div>
-          <h1>my profile</h1>
-          <button className="report-button" onClick={this.editProfile}>edit profile</button>
+          <h1>profile</h1>
         </div>
-        <img src={your_profile_img} alt="your profile picture" />
-        <h2>{Person.firstname} {Person.lastname} ({Person.pronouns})</h2>
-        <p>{Person.major}</p>
-        <p>{Person.year}</p>
-        <p>{Person.communication.join(', ')}</p>
+        <img class = "prof" src={your_profile_img} alt="profile picture" />
+
+        <h2>{this.state.firstname} {this.state.lastname} ({this.state.pronouns})</h2>
+        <p>{this.state.major}</p>
+        <p>{this.state.year}</p>
+        <p>{this.state.communication}</p>
         <h2>additional info</h2>
-        <p>types of work: {Person.work.join(', ')}</p>
-        <p>hours / week: {Person.hours}</p>
-        <p>goals: {Person.goals.join(', ')}</p>
-        <p>previous pod rating: {Person.rating}/5</p>
+        <p>types of work: {this.state.work}</p>
+        <p>hours / week: {this.state.hours}</p>
+        <p>goals: {this.state.goals}</p>
+        <p class="rate_text">previous pod rating:</p>
+        <img class = "rate" src={this.state.rating} alt="rating" />
+
       </div>
     );
   }

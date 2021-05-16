@@ -21,8 +21,12 @@ class SignUp extends Component{
     this.createAccount = this.createAccount.bind(this)
     this.onSelectPartnershipLength = this.onSelectPartnershipLength.bind(this)
     this.handleWorkHours = this.handleWorkHours.bind(this)
+    this.handleYear = this.handleYear.bind(this)
+
     this.onSelectDesiredFrequency = this.onSelectDesiredFrequency.bind(this)
     this.onChangeWritten = this.onChangeWritten.bind(this)
+    this.onChangeGoal = this.onChangeGoal.bind(this)
+
     this.onSelectMatchingPreference = this.onSelectMatchingPreference.bind(this)
     this.accountabilityOptions = this.accountabilityOptions.bind(this)
     this.podSize = this.podSize.bind(this)
@@ -61,6 +65,11 @@ class SignUp extends Component{
       return;
       //this.state.major = ""
     }
+    if(this.state.year == null || this.state.year === "undefined"){
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.major = ""
+    }
     if(this.state.phone_number == null || this.state.phone_number === "undefined"){
       this.setState({form_unfilled: true})
       return;
@@ -82,6 +91,11 @@ class SignUp extends Component{
       //this.state.partnership_length = ""
     }
     if(this.state.written_answer == null || this.state.written_answer === "undefined"){
+      this.setState({form_unfilled: true})
+      return;
+      //this.state.written_answer = ""
+    }
+    if(this.state.goal == null || this.state.goal === "undefined"){
       this.setState({form_unfilled: true})
       return;
       //this.state.written_answer = ""
@@ -130,6 +144,7 @@ class SignUp extends Component{
         const addReport = db.collection("userInfo").doc(email).set({
           "first_name": this.state.fname,
           "last_name": this.state.lname,
+          "year": this.state.year,
           "pronouns": this.state.pronouns,
           "major": this.state.major,
           "phone_number": this.state.phone_number,
@@ -138,6 +153,8 @@ class SignUp extends Component{
           "desired_frequency": this.state.desired_frequency,
           "partnership_length": this.state.partnership_length,
           "written_answer": this.state.written_answer,
+          "goal": this.state.goal,
+
           "pod_size": this.state.pod_size,
           "accountability_style": this.state.accountability_style,
           "set_private": this.state.set_private,
@@ -157,6 +174,15 @@ class SignUp extends Component{
     this.setState({estimated_hours: e.target.value}, () => {
       console.log(this.state.estimated_hours)
     })
+  }
+
+  handleYear(e){
+    this.setState({form_unfilled: false})
+    this.setState({
+      year: e.currentTarget.value
+    }, () => {
+      console.log(this.state.year)
+    });
   }
 
   onSelectMatchingPreference(e){
@@ -204,6 +230,10 @@ class SignUp extends Component{
     this.setState({form_unfilled: false})
     this.setState({ written_answer: event.target.value });
   };
+  onChangeGoal = event => {
+    this.setState({form_unfilled: false})
+    this.setState({ goal: event.target.value });
+  };
 
   podSize(e){
     this.setState({form_unfilled: false})
@@ -238,7 +268,12 @@ class SignUp extends Component{
     this.setState({options: options}, () => {
       let list = ""
       for(let i = 0; i < options.length; i++){
-        list = options[i] + ", " + list
+        if (list == ""){
+          list = options[i] + list
+
+        }else{
+          list = options[i] + ", " + list
+        }
       }
       console.log(list)
       this.setState({accountability_style: list})
@@ -263,7 +298,12 @@ class SignUp extends Component{
     this.setState({workAccOptions: options}, () => {
       let list = ""
       for(let i = 0; i < options.length; i++){
-        list = options[i] + ", " + list
+        if (list == ""){
+          list = options[i] + list
+
+        }else{
+          list = options[i] + ", " + list
+        }
       }
       console.log(list)
       this.setState({accountability_for: list})
@@ -351,13 +391,26 @@ class SignUp extends Component{
               name="major"
               value={major}
               onChange={this.onChange}/>
-            <label className="field-heading" for="year">Year</label>
+            {/* <label className="field-heading" for="year">Year</label>
             <input
               type="text"
               id="year"
               name="year"
               value={year}
-              onChange={this.onChange} />
+              onChange={this.onChange} /> */}
+            <label className="field-heading" for="year">Year</label>
+            <select
+              name="year"
+              id="year"
+              defaultValue="freshman"
+              onChange={this.handleYear}>
+              <option value="Freshman">Freshman</option>
+              <option value="Sophomore">Sophomore</option>
+              <option value="Junior">Junior</option>
+              <option value="Senior">Senior</option>
+              <option value="Graduate Student">Graduate Student</option>
+            </select>
+
             <label className="field-heading" for="number">Phone number</label>
             <input
               type="text"
@@ -423,6 +476,10 @@ class SignUp extends Component{
               <input type="checkbox" name="email" value="email" onChange={this.remainPrivate}/>
               Email
             </label>
+            <label>
+              <input type="checkbox" name="none" value="none" onChange={this.remainPrivate}/>
+              None
+            </label>
           </div>
 
           <h2>Accountability Preferences</h2>
@@ -431,27 +488,27 @@ class SignUp extends Component{
             <h3>What would you like to be held accountable for?</h3>
             <div className="split">
               <label>
-                <input type="checkbox" name="work_type" value="technical" onChange={this.workOptions}/>
+                <input type="checkbox" name="work_type" value="Technical" onChange={this.workOptions}/>
                 Technical work (eg. coding)
               </label>
               <label>
-                <input type="checkbox" name="work_type" value="psets" onChange={this.workOptions}/>
+                <input type="checkbox" name="work_type" value="Psets" onChange={this.workOptions}/>
                 Problem sets
               </label>
               <label>
-                <input type="checkbox" name="work_type" value="readings" onChange={this.workOptions}/>
+                <input type="checkbox" name="work_type" value="Readings" onChange={this.workOptions}/>
                 Readings
               </label>
               <label>
-                <input type="checkbox" name="work_type" value="essays" onChange={this.workOptions}/>
+                <input type="checkbox" name="work_type" value="Essays" onChange={this.workOptions}/>
                 Essays
               </label>
               <label>
-                <input type="checkbox" name="work_type" value="projects" onChange={this.workOptions}/>
+                <input type="checkbox" name="work_type" value="Projects" onChange={this.workOptions}/>
                 Projects
               </label>
               <label>
-                <input type="checkbox" name="work_type" value="personal_goals" onChange={this.workOptions}/>
+                <input type="checkbox" name="work_type" value="Personal Goals" onChange={this.workOptions}/>
                 Personal goals
               </label>
               <label>
@@ -469,12 +526,12 @@ class SignUp extends Component{
                   id="work_hours"
                   defaultValue="work_hours5"
                   onChange={this.handleWorkHours}>
-                  <option value="work_hours5">5</option>
-                  <option value="work_hours10">10</option>
-                  <option value="work_hours15">15</option>
-                  <option value="work_hours20">20</option>
-                  <option value="work_hours25">25</option>
-                  <option value="work_hours30">30</option>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="25">25</option>
+                  <option value="30">30</option>
                 </select>
               </div>
 
@@ -542,17 +599,19 @@ class SignUp extends Component{
 
             <h3>Style of accountability</h3>
             <label for="zoom">
-              <input type="checkbox" id="zoom" name="zoom" value="zoom" onChange={this.accountabilityOptions}/>
+              <input type="checkbox" id="zoom" name="zoom" value="Zoom" onChange={this.accountabilityOptions}/>
               Zoom meetings working together
             </label>
             <label for="sheet">
-              <input type="checkbox" id="sheet" name="sheet" value="sheet" onChange={this.accountabilityOptions}/>
+              <input type="checkbox" id="sheet" name="sheet" value="Google Sheet" onChange={this.accountabilityOptions}/>
               Tracking hours of work on a Google Sheet
             </label>
             <label for="text">
-              <input type="checkbox" id="text" name="text" value="text" onChange={this.accountabilityOptions}/>
+              <input type="checkbox" id="text" name="text" value="Text" onChange={this.accountabilityOptions}/>
               Text check-ins
             </label>
+            <label for="accountability_goal">What is your overall accountability goal?</label>
+            <input type="text" id="accountability_goal" name="accountability_goal" onChange={this.onChangeGoal}/>
 
             <label for="accountability_strategy">How might you and your partner(s) make sure that you're keeping up with work?</label>
             <input type="text" id="accountability_strategy" name="accountability_strategy" onChange={this.onChangeWritten}/>

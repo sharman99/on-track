@@ -10,10 +10,18 @@ class Report extends Component{
       reportedUser:"temp", //TODO: get this as a prop from last page
       report_unfilled: false,
     }
+    this.curr_email = localStorage.getItem('email');
     this.onSelect = this.onSelect.bind(this);
     this.uploadReport = this.uploadReport.bind(this);
     this.onChangeOther = this.onChangeOther.bind(this);
     this.cancel = this.cancel.bind(this);
+  }
+
+  componentDidMount(){
+    if(this.curr_email == null || this.curr_email == ""){
+      //not logged in so send to sign in
+      this.props.history.push('/sign_in');
+    }
   }
 
   cancel = event => {
