@@ -14,6 +14,7 @@ class Profile extends Component{
   }
 
   componentDidMount(){
+    //console.log(this.props.location.state.current_profile)
     const db = firebase.firestore();
 
     //get the "a" variable from database 

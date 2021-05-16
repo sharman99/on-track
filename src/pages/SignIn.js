@@ -21,11 +21,13 @@ class SignIn extends Component{
       // Signed in
       var user = userCredential.user;
       console.log("SUCCESFULLY SIGNED IN")
-
-      //TODO: set the signed-in user's email as a state in App.js
       
-      //copy the below to re-route to new page (change '/profile' to the link you want them to go to)
-      this.props.history.push('/your_profile');
+      //this is how you push a variable to the next page
+      this.props.history.push({
+        pathname: '/your_profile',
+        state: { signed_in_email: email}
+      })
+      
     })
     .catch((error) => {
       var errorCode = error.code;

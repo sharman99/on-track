@@ -14,14 +14,22 @@ class YourProfile extends Component{
   }
 
   componentDidMount(){
-    const db = firebase.firestore();
+    //this is how you recieve the props variable sent from the last page
+    if(this.props.location.state.signed_in_email  == null || this.props.location.state.signed_in_email == undefined){
+      console.log("rerouting to sign in")
+      this.props.history.push('/sign_in');
+    }
+    else{
+      console.log(this.props.location.state.signed_in_email)
+      const db = firebase.firestore();
 
-    //get the "a" variable from database 
-    db.collection("blah").doc("hello").get().then((doc) => {
-      //setting the state variable called "temp" to the variable in the doc with the name "a"
-      this.setState({cs: doc.data().cs})
-      this.setState({temp_val: doc.data().temp_val})
-    })
+      //get the "a" variable from database 
+      db.collection("blah").doc("hello").get().then((doc) => {
+        //setting the state variable called "temp" to the variable in the doc with the name "a"
+        this.setState({cs: doc.data().cs})
+        this.setState({temp_val: doc.data().temp_val})
+      })
+    }
   }
 
   editProfile = event => {

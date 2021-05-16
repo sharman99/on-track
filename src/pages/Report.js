@@ -13,6 +13,14 @@ class Report extends Component{
     this.onSelect = this.onSelect.bind(this);
     this.uploadReport = this.uploadReport.bind(this);
     this.onChangeOther = this.onChangeOther.bind(this);
+    this.cancel = this.cancel.bind(this);
+  }
+
+  cancel = event => {
+    this.props.history.push({
+      pathname: '/profile',
+      state: { current_profile: "temp" }
+    })
   }
 
   uploadReport = event => {
@@ -89,7 +97,7 @@ class Report extends Component{
           {this.state.report_unfilled && <div style={{ color: 'red'}}> You must pick a reason.</div>}
           <div>
             <input type="submit" value="Report User" onClick={this.uploadReport}/>
-            <a>cancel</a>
+            <input type="submit" value="Cancel" onClick={this.cancel}/>
           </div>
         </form>
       </div>
