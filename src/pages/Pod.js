@@ -80,17 +80,18 @@ class Pod extends Component{
               if (i == doc.data().num_members)
                 break;
                   
+                this.setState({email5: doc.data().email5});
+                db.collection("userInfo").doc(doc.data().email5).get().then((doc) => {
+                  this.setState({fname5: doc.data().first_name});
+                  this.setState({lname5: doc.data().last_name});
+                  this.setState({pronouns5:doc.data().pronouns});
+                  this.setState({email5: doc.data().email5});
+                  
+                } 
+                )
         }
   
-        // this.setState({email5: doc.data().email5});
-        // db.collection("userInfo").doc(doc.data().email5).get().then((doc) => {
-        //   this.setState({fname5: doc.data().first_name});
-        //   this.setState({lname5: doc.data().last_name});
-        //   this.setState({pronouns5:doc.data().pronouns});
-        //   this.setState({email5: doc.data().email5});
-          
-        // } 
-        // )
+
   
   
     
@@ -206,28 +207,41 @@ class Pod extends Component{
           </nav>
           <div className="profiles">
             <div className="icon">
-              <img src={profile_img} alt="profile picture" />
-              <h2>{this.state.fname1} {this.state.lname1}</h2>
+              {this.state.fname1 != null && <img src={profile_img} alt="profile picture" />}
+              {this.state.fname1 != null && <h2>{this.state.fname1} {this.state.lname1}</h2>}
 
               {/* <h2>{this.state.mem_dict.email1.fname} Person.lastname</h2> */}
-              <h2>{this.state.pronouns1}</h2>
+              {this.state.fname1 != null && <h2>{this.state.pronouns1}</h2>}
             </div>
             <div className="icon">
-              <img src={profile_img} alt="profile picture" />
-              <h2>Person.firstname Person.lastname</h2>
-              <h2>(Person.pronouns)</h2>
+              {this.state.fname2 != null && <img src={profile_img} alt="profile picture" />}
+              {this.state.fname2 != null && <h2>{this.state.fname2} {this.state.lname2}</h2>}
+
+              {/* <h2>{this.state.mem_dict.email1.fname} Person.lastname</h2> */}
+              {this.state.fname2 != null && <h2>{this.state.pronouns2}</h2>}
             </div>
             <div className="icon">
-              <img src={profile_img} alt="profile picture" />
-              <h2>Person.firstname Person.lastname</h2>
-              <h2>(Person.pronouns)</h2>
+              {this.state.fname3 != null && <img src={profile_img} alt="profile picture" />}
+              {this.state.fname3 != null && <h2>{this.state.fname3} {this.state.lname3}</h2>}
+
+              {/* <h2>{this.state.mem_dict.email1.fname} Person.lastname</h2> */}
+              {this.state.fname3 != null && <h2>{this.state.pronouns1}</h2>}
             </div>
             <div className="icon">
-              <img src={profile_img} alt="profile picture" />
-              <h2>Person.firstname Person.lastname</h2>
-              <h2>(Person.pronouns)</h2>
+              {this.state.fname4 != null && <img src={profile_img} alt="profile picture" />}
+              {this.state.fname4 != null && <h2>{this.state.fname4} {this.state.lname4}</h2>}
+
+              {/* <h2>{this.state.mem_dict.email1.fname} Person.lastname</h2> */}
+              {this.state.fname4 != null && <h2>{this.state.pronouns1}</h2>}
             </div>
-          </div>
+            <div className="icon">
+              {this.state.fname5 != null && <img src={profile_img} alt="profile picture" />}
+              {this.state.fname5 != null && <h2>{this.state.fname5} {this.state.lname5}</h2>}
+
+              {/* <h2>{this.state.mem_dict.email1.fname} Person.lastname</h2> */}
+              {this.state.fname5 != null && <h2>{this.state.pronouns5}</h2>}
+            </div>
+            </div>
           <hr />
           <div className="split">
             <div>
