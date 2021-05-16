@@ -95,7 +95,6 @@ class YourProfile extends Component{
         <div>{this.state.cs}</div>
         <div>
           <h1>profile</h1>
-          <button className="report-button" onClick={this.reportUser}>report user</button>
         </div>
         <img class = "prof" src={your_profile_img} alt="profile picture" />
 
