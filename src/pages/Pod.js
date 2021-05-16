@@ -9,9 +9,50 @@ class Pod extends Component{
     this.state={
 
     }
+    this.curr_email = localStorage.getItem('email');
+    this.incrementLinkClick = this.incrementLinkClick.bind(this);
   }
 
   componentDidMount(){
+    this.curr_pod = "pod1"
+
+    if(this.curr_email == null || this.curr_email == ""){
+      //not logged in so send to sign in
+      this.props.history.push('/sign_in');
+    }
+  }
+
+  incrementLinkClick(){
+    const db = firebase.firestore();
+
+    var today = new Date();
+    console.log(today)
+
+    var date_created = today;
+    var meeting_frequency_days = 7;
+
+    db.collection("podInfo").doc(this.curr_pod).get().then((doc) => {
+      date_created = new Date(doc.data().date_created);
+      console.log("date created: " + date_created)
+      meeting_frequency_days = doc.data().meeting_frequency_days;
+    })
+    .then(doc => {
+      var difference_in_time = today.getTime() - date_created.getTime();
+
+      // To calculate the number of days between two dates
+      var difference_in_days = difference_in_time / (1000 * 3600 * 24);
+
+      console.log("days between: " + difference_in_days)
+      var expected_meetings = difference_in_days / meeting_frequency_days
+      console.log(expected_meetings)
+      var curr_week = Math.ceil(expected_meetings)
+      console.log(curr_week)
+
+      const db = firebase.firestore();
+      const addReport = db.collection("podInfo").doc(this.curr_pod).collection("meetingHistory").doc("meeting_" + curr_week).set({
+        [this.curr_email]: 1,
+      });
+  });
     //console.log(this.props.location.state.current_profile)
     const db = firebase.firestore();
 
@@ -106,8 +147,8 @@ class Pod extends Component{
         <div className="container">
           <h1>your accountability pod</h1>
           <nav>
-            <a>Zoom</a>
-            <a>Google Sheets</a>
+          <div onClick={this.incrementLinkClick}>Zoom</div>
+            <div onClick={this.incrementLinkClick}>Google Sheets</div>
           </nav>
           <div className="profiles">
             <div className="icon">
