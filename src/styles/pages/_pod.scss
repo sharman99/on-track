@@ -1,6 +1,6 @@
 .Pod {
   margin-top: 100px;
-  
+
   .container {
     position: relative;
   }
@@ -20,7 +20,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    margin: $base * 2;
+    margin: $base*2 0;
   }
 
   .icon {

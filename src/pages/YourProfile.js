@@ -82,8 +82,6 @@ class YourProfile extends Component{
     return (
       <div className="Profile">
         {/*This is how we display state variables. Below we are displaying the state variables called "temp_val" and "cs"*/}
-        <div>{this.state.temp_val}</div>
-        <div>{this.state.cs}</div>
         <div>
           <h1>profile</h1>
         </div>
@@ -92,7 +90,8 @@ class YourProfile extends Component{
             <img className="prof" src={your_profile_img} alt="profile picture" />
           </div>
           <div>
-            <h2>{this.state.firstname} {this.state.lastname} ({this.state.pronouns})</h2>
+            <h2>{this.state.firstname} {this.state.lastname}</h2>
+            {this.state.pronouns && <p>pronouns: ({this.state.pronouns})</p>}
             {this.state.major && <p>major: {this.state.major}</p>}
             {this.state.year && <p>year: {this.state.year}</p>}
             {this.state.communication && <p>communication: {this.state.communication}</p>}

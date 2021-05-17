@@ -1,3 +1,5 @@
+import { HashRouter, Route, Link } from 'react-router-dom';
+
 import logo from '../logo.svg';
 import '../styles/navbar.scss';
 import React, { Component } from 'react';
@@ -25,9 +27,12 @@ class Navbar extends Component{
       <nav className="container">
         <img src={logo} className="Logo" alt="on track logo" />
         <ul>
-          <li><a>My Profile</a></li>
-          <li><a>Accountability Pod</a></li>
-          <li><a onClick={this.doSignOut}>Sign Out</a></li>
+          <li><Link to={{
+            pathname: "/your_profile",
+            state: { signed_in_email: this.state.email }
+          }}>My Profile</Link></li>
+          <li><Link to="/pod">Accountability Pod</Link></li>
+          <li><Link to="/sign_in" onClick={this.doSignOut}>Sign Out</Link></li>
         </ul>
       </nav>
     </div>
