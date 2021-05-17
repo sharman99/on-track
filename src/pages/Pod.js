@@ -31,6 +31,10 @@ class Pod extends Component{
   }
 
   componentDidMount(){
+    if(this.curr_email == null || this.curr_email == ""){
+      //not logged in so send to sign in
+      this.props.history.push('/sign_in');
+    }else{
     const db = firebase.firestore();
     this.checkProgress();
 
@@ -130,10 +134,7 @@ class Pod extends Component{
   
       })
 
-    // if(this.curr_email == null || this.curr_email == ""){
-    //   //not logged in so send to sign in
-    //   this.props.history.push('/sign_in');
-    // }
+    }
   }
 
   incrementLinkClick(){
