@@ -14,8 +14,8 @@ class LoadingZoom extends Component{
   render(){
     return (
       <div className="Zoom">
-        <h3>Copy and paste the below link to go your pod's Zoom meeting</h3>
-        <h3>{this.link}</h3>
+        <h3>Click the link that appears below to go your pod's Zoom meeting</h3>
+        <a href={this.link}>{this.link}</a>
       </div>
     );
   }
