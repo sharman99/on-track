@@ -1,4 +1,9 @@
-import profile_img from "../media/profile_img.png";
+import profile_img1 from "../media/profile_img1.png";
+import profile_img2 from "../media/profile_img2.png";
+import profile_img3 from "../media/profile_img3.png";
+import profile_img4 from "../media/profile_img4.png";
+import profile_img5 from "../media/profile_img5.png";
+
 import Profiles from "../media/profiles.json";
 import React, { Component } from 'react';
 import firebase from '../firebase';
@@ -23,17 +28,18 @@ class Pod extends Component{
     const db = firebase.firestore();
     this.checkProgress();
 
-       this.curr_pod = "pod2"
-       db.collection("podInfo").doc("pod2").get().then((doc) => {
+       this.curr_pod = localStorage.getItem('pod')
+       console.log(this.curr_pod)
+       db.collection("podInfo").doc(this.curr_pod).get().then((doc) => {
         //setting the state variable called "temp" to the variable in the doc with the name "a"
         this.setState({check: "check"})
         for  (var i = 0; i < doc.data().num_members; i++) {
-          this.setState({email1: doc.data().email1});
-          db.collection("userInfo").doc(doc.data().email1).get().then((doc) => {
+          this.setState({email1: doc.data().user1});
+          db.collection("userInfo").doc(doc.data().user1).get().then((doc) => {
             this.setState({fname1: doc.data().first_name});
             this.setState({lname1: doc.data().last_name});
             this.setState({pronouns1:doc.data().pronouns});
-            this.setState({email1: doc.data().email1});
+            this.setState({email1: doc.data().user1});
             
           } 
           )
@@ -42,12 +48,12 @@ class Pod extends Component{
           if (i == doc.data().num_members)
             break;
       
-          this.setState({email2: doc.data().email2});
-          db.collection("userInfo").doc(doc.data().email2).get().then((doc) => {
+          this.setState({email2: doc.data().user2});
+          db.collection("userInfo").doc(doc.data().user2).get().then((doc) => {
             this.setState({fname2: doc.data().first_name});
             this.setState({lname2: doc.data().last_name});
             this.setState({pronouns2:doc.data().pronouns});
-            this.setState({email2: doc.data().email2});
+            this.setState({email2: doc.data().user2});
             
           } 
           )
@@ -56,12 +62,12 @@ class Pod extends Component{
           if (i == doc.data().num_members)
             break;
      
-            this.setState({email3: doc.data().email3});
-            db.collection("userInfo").doc(doc.data().email3).get().then((doc) => {
+            this.setState({email3: doc.data().user3});
+            db.collection("userInfo").doc(doc.data().user3).get().then((doc) => {
               this.setState({fname3: doc.data().first_name});
               this.setState({lname3: doc.data().last_name});
               this.setState({pronouns3:doc.data().pronouns});
-              this.setState({email3: doc.data().email3});
+              this.setState({email3: doc.data().user3});
               
             } 
             )
@@ -69,14 +75,14 @@ class Pod extends Component{
     
             if (i == doc.data().num_members)
               break;
-        
+            console.log(i, doc.data().num_members)
       
-              this.setState({email4: doc.data().email4});
-              db.collection("userInfo").doc(doc.data().email4).get().then((doc) => {
+              this.setState({email4: doc.data().user4});
+              db.collection("userInfo").doc(doc.data().user4).get().then((doc) => {
                 this.setState({fname4: doc.data().first_name});
                 this.setState({lname4: doc.data().last_name});
                 this.setState({pronouns4:doc.data().pronouns});
-                this.setState({email4: doc.data().email4});
+                this.setState({email4: doc.data().user4});
                 
               } 
               )
@@ -85,12 +91,12 @@ class Pod extends Component{
               if (i == doc.data().num_members)
                 break;
                   
-                this.setState({email5: doc.data().email5});
-                db.collection("userInfo").doc(doc.data().email5).get().then((doc) => {
+                this.setState({email5: doc.data().user5});
+                db.collection("userInfo").doc(doc.data().user5).get().then((doc) => {
                   this.setState({fname5: doc.data().first_name});
                   this.setState({lname5: doc.data().last_name});
                   this.setState({pronouns5:doc.data().pronouns});
-                  this.setState({email5: doc.data().email5});
+                  this.setState({email5: doc.data().user5});
                   
                 } 
                 )
@@ -247,35 +253,35 @@ inside(j) {
           </nav>
           <div className="profiles">
             <div className="icon">
-              {this.state.fname1 != null && <img src={profile_img} alt="profile picture" />}
+              {this.state.fname1 != null && <img  className="prof" src={profile_img1} alt="profile picture" />}
               {this.state.fname1 != null && <h2>{this.state.fname1} {this.state.lname1}</h2>}
 
               {/* <h2>{this.state.mem_dict.email1.fname} Person.lastname</h2> */}
               {this.state.fname1 != null && <h2>{this.state.pronouns1}</h2>}
             </div>
             <div className="icon">
-              {this.state.fname2 != null && <img src={profile_img} alt="profile picture" />}
+              {this.state.fname2 != null && <img  className="prof" src={profile_img2} alt="profile picture" />}
               {this.state.fname2 != null && <h2>{this.state.fname2} {this.state.lname2}</h2>}
 
               {/* <h2>{this.state.mem_dict.email1.fname} Person.lastname</h2> */}
               {this.state.fname2 != null && <h2>{this.state.pronouns2}</h2>}
             </div>
             <div className="icon">
-              {this.state.fname3 != null && <img src={profile_img} alt="profile picture" />}
+              {this.state.fname3 != null && <img  className="prof" src={profile_img3} alt="profile picture" />}
               {this.state.fname3 != null && <h2>{this.state.fname3} {this.state.lname3}</h2>}
 
               {/* <h2>{this.state.mem_dict.email1.fname} Person.lastname</h2> */}
               {this.state.fname3 != null && <h2>{this.state.pronouns1}</h2>}
             </div>
             <div className="icon">
-              {this.state.fname4 != null && <img src={profile_img} alt="profile picture" />}
+              {this.state.fname4 != null && <img  className="prof" src={profile_img4} alt="profile picture" />}
               {this.state.fname4 != null && <h2>{this.state.fname4} {this.state.lname4}</h2>}
 
               {/* <h2>{this.state.mem_dict.email1.fname} Person.lastname</h2> */}
               {this.state.fname4 != null && <h2>{this.state.pronouns1}</h2>}
             </div>
             <div className="icon">
-              {this.state.fname5 != null && <img src={profile_img} alt="profile picture" />}
+              {this.state.fname5 != null && <img  className="prof" src={profile_img5} alt="profile picture" />}
               {this.state.fname5 != null && <h2>{this.state.fname5} {this.state.lname5}</h2>}
 
               {/* <h2>{this.state.mem_dict.email1.fname} Person.lastname</h2> */}
@@ -293,7 +299,7 @@ inside(j) {
             </div>
             <div>
               <h2>Pod Member of the Week</h2>
-              <img src={profile_img} alt="profile picture" />
+              <img  className="prof" src={profile_img3} alt="profile picture" />
               <h3>congrats joyce sun your teammates think you rock! Keep it up</h3>
             </div>
             <div>
