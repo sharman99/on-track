@@ -13,6 +13,7 @@ class Pod extends Component{
     }
     this.curr_email = localStorage.getItem('email');
     this.incrementLinkClick = this.incrementLinkClick.bind(this);
+    this.checkProgress = this.checkProgress.bind(this);
   }
 
   componentDidMount(){
@@ -143,6 +144,8 @@ class Pod extends Component{
       }
 
   checkProgress(){
+    // if (!this.state.loaded){
+    //   this.state.loaded = true;
     const db = firebase.firestore();
 
     var today = new Date();
@@ -152,8 +155,9 @@ class Pod extends Component{
       this.setState({date_created: doc.data().date_created})
       this.setState({meeting_freq: doc.data().meeting_frequency_days})
       this.setState({num_members: doc.data().num_members})
-    })
-    .then(doc => {
+    
+    // )
+    // .then(doc => {
       var difference_in_time = today.getTime() - this.date_created.getTime();
 
       // To calculate the number of days between two dates
@@ -196,6 +200,7 @@ class Pod extends Component{
     const {
       email,
       password,
+      loaded = false
     } = this.state;
     return (
       <div className="Pod">
@@ -250,7 +255,9 @@ class Pod extends Component{
               <h3>Communication Preferences: </h3>
               <h3>Successful Pod Meetings: </h3>
               <ul>
-                <script>checkProgress();</script>
+                {
+                this.checkProgress()
+                }
               </ul>
             </div>
             <div>
