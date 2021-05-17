@@ -53,11 +53,11 @@ class Pod extends Component{
             this.setState({lname1: doc.data().last_name});
             this.setState({pronouns1:doc.data().pronouns});
             this.setState({email1: doc.data().user1});
-            
-          } 
+
+          }
           )
           i++;
-  
+
           if (i == doc.data().num_members)
             break;
           localStorage.setItem('email2', doc.data().user2)
@@ -69,11 +69,11 @@ class Pod extends Component{
             this.setState({lname2: doc.data().last_name});
             this.setState({pronouns2:doc.data().pronouns});
             this.setState({email2: doc.data().user2});
-            
-          } 
+
+          }
           )
           i++;
-  
+
           if (i == doc.data().num_members)
             break;
             localStorage.setItem('email3', doc.data().user3)
@@ -85,11 +85,11 @@ class Pod extends Component{
               this.setState({lname3: doc.data().last_name});
               this.setState({pronouns3:doc.data().pronouns});
               this.setState({email3: doc.data().user3});
-              
-            } 
+
+            }
             )
             i++;
-    
+
             if (i == doc.data().num_members)
               break;
             console.log(i, doc.data().num_members)
@@ -102,11 +102,11 @@ class Pod extends Component{
                 this.setState({lname4: doc.data().last_name});
                 this.setState({pronouns4:doc.data().pronouns});
                 this.setState({email4: doc.data().user4});
-                
-              } 
+
+              }
               )
               i++;
-      
+
               if (i == doc.data().num_members)
                 break;
                 localStorage.setItem('email5', doc.data().user5)
@@ -118,14 +118,14 @@ class Pod extends Component{
                   this.setState({lname5: doc.data().last_name});
                   this.setState({pronouns5:doc.data().pronouns});
                   this.setState({email5: doc.data().user5});
-                  
-                } 
+
+                }
                 )
         }
 
   
       })
-  
+
     // if(this.curr_email == null || this.curr_email == ""){
     //   //not logged in so send to sign in
     //   this.props.history.push('/sign_in');
@@ -158,16 +158,31 @@ class Pod extends Component{
       var curr_week = Math.ceil(expected_meetings)
       console.log(curr_week)
 
-      // const db = firebase.firestore();
-      const addReport = db.collection("podInfo").doc(this.curr_pod).collection("meetingHistory").doc("meeting_" + curr_week).set({
+      /*const addReport = db.collection("podInfo").doc(this.curr_pod).collection("meetingHistory").doc("meeting_" + curr_week).set({
         [this.curr_email]: 1,
-      });
+      });*/
+      const firstDocRef = db.collection("podInfo").doc(this.curr_pod).collection("meetingHistory").doc("meeting_" + curr_week)
+      const existDoc = firstDocRef.get()
+      .then((resDoc)=>{
+          if(resDoc.exists)
+          {
+            var user = this.curr_email.substring(0, this.curr_email.indexOf("@"))
+            const addReport = db.collection("podInfo").doc(this.curr_pod).collection("meetingHistory").doc("meeting_" + curr_week).update({
+              [user]: 1,
+              //[`${this.curr_email}`]: 1,
+            });
+          }
+          else
+          {
+            var user = this.curr_email.substring(0, this.curr_email.indexOf("@"))
+            const addReport = db.collection("podInfo").doc(this.curr_pod).collection("meetingHistory").doc("meeting_" + curr_week).set({
+              //[this.curr_email]: 1,
+              [user]: 1,
+            });
+          }
+        });
   });
-    //console.log(this.props.location.state.current_profile)
-    // const db = firebase.firestore();
-
-    //get the "a" variable from database 
-      }
+  }
 
   routeSheets(){
     this.incrementLinkClick();
@@ -242,7 +257,7 @@ routeProfile5(){
       this.props.history.push('/loading_zoom');
     });
   }
-  
+
 
   checkProgress(){
     const db = firebase.firestore();
@@ -259,9 +274,9 @@ routeProfile5(){
     })
     .then(doc => {
       var today = new Date();
-      
+
       var difference_in_time = today.getTime() - date_created.getTime();
-      
+
       // To calculate the number of days between two dates
       var difference_in_days = difference_in_time / (1000 * 3600 * 24);
 
@@ -269,7 +284,7 @@ routeProfile5(){
       var curr_week = Math.ceil(expected_meetings)
 
       this.state.array= new Array(curr_week);
-      
+
       for (var j = 1; j < curr_week;j++) {
         this.inside(j)
       }
@@ -283,14 +298,14 @@ inside(j) {
         .then(snap =>{
           const data = snap.data();
           var count = 0
-          
+
           for (const key in data) {
               const value = data[key];
 
               count = count + 1
           }
 
-          
+
           if (this.state.num_members != count) {
             //display sad plant
             this.state.array[j-1] = unhealthy_plant_img;
@@ -310,9 +325,9 @@ inside(j) {
       <div className="Pod">
         <div className="container">
           <h1>your accountability pod</h1>
-          <nav>
-          <div onClick={this.routeZoom}>Zoom</div>
-            <div onClick={this.routeSheets}>Google Sheets</div>
+          <nav className="Platforms">
+            <a onClick={this.routeZoom}>Zoom</a>
+            <a onClick={this.routeSheets}>Google Sheets</a>
           </nav>
           <div className="profiles">
             <div onClick={this.routeProfile1} className="icon">
@@ -355,7 +370,7 @@ inside(j) {
           <div className="split">
             <div>
               <h2>pod info</h2>
-              <h3>Meeting Preferences: </h3>
+              <h3>Meeting Frequency: </h3>
               <h3>Communication Preferences: </h3>
               <h3>Successful Pod Meetings: </h3>
               {images}

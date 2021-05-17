@@ -17,8 +17,8 @@ import YourProfile from './pages/YourProfile'
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <HashRouter>
+        <Navbar />
         <Route
           exact path='/'
           render={(props) => (

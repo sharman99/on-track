@@ -60,8 +60,6 @@ class Profile extends Component{
     return (
       <div className="Profile">
         {/*This is how we display state variables. Below we are displaying the state variables called "temp_val" and "cs"*/}
-        <div>{this.state.temp_val}</div>
-        <div>{this.state.cs}</div>
         <div>
           <h1>profile</h1>
           <button className="report-button" onClick={this.reportUser}>report user</button>
