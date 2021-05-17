@@ -4,6 +4,11 @@ import React, { Component } from 'react';
 import firebase from '../firebase';
 import profile_img from "../media/profile_img.png";
 import Person from "../media/profile.json";
+import profile_img1 from "../media/profile_img1.png";
+import profile_img2 from "../media/profile_img2.png";
+import profile_img3 from "../media/profile_img3.png";
+import profile_img4 from "../media/profile_img4.png";
+import profile_img5 from "../media/profile_img5.png";
 
 class Profile extends Component{
   constructor(props){
@@ -12,6 +17,9 @@ class Profile extends Component{
       temp: "",
     }
     this.curr_email = localStorage.getItem('email');
+    this.other_profile = localStorage.getItem('other_profile')
+    this.other_profile = props.other_profile;
+    console.log(this.curr_email)
   }
 
   componentDidMount(){
@@ -22,9 +30,9 @@ class Profile extends Component{
     else{
       //console.log(this.props.location.state.current_profile)
       const db = firebase.firestore();
-
+      
       //get the "a" variable from database 
-      db.collection("userInfo").doc("nesharma@stanford.edu").get().then((doc) => {
+      db.collection("userInfo").doc(localStorage.getItem('other_profile')).get().then((doc) => {
         //setting the state variable called "temp" to the variable in the doc with the name "a"
         this.setState({firstname: doc.data().first_name})
         this.setState({lastname: doc.data().last_name})
@@ -58,7 +66,7 @@ class Profile extends Component{
           <h1>profile</h1>
           <button className="report-button" onClick={this.reportUser}>report user</button>
         </div>
-        <img src={profile_img} alt="profile picture" />
+        <img class = "prof" src={localStorage.getItem('other_profile_img')} alt="profile picture" />
         <h2>{this.state.firstname} {this.state.lastname} ({this.state.pronouns})</h2>
         <p>{this.state.major}</p>
         <p>{Person.year}</p>
