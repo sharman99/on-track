@@ -39,6 +39,10 @@ class Pod extends Component{
        db.collection("podInfo").doc(this.curr_pod).get().then((doc) => {
         //setting the state variable called "temp" to the variable in the doc with the name "a"
         var email = doc.data().member_of_the_week;
+
+        this.setState({meeting_freq: doc.data().frequency});
+        this.setState({communication_pref: doc.data().communication_pref});
+
         db.collection("userInfo").doc(email).get().then((doc) => {
           console.log(email)
           this.setState({member_of_the_week: doc.data().first_name + " " + doc.data().last_name})
@@ -370,8 +374,8 @@ inside(j) {
           <div className="split">
             <div>
               <h2>pod info</h2>
-              <h3>Meeting Frequency: </h3>
-              <h3>Communication Preferences: </h3>
+              <h3>Meeting Frequency: {this.state.meeting_freq}</h3>
+              <h3>Communication Preferences: {this.state.communication_pref}</h3>
               <h3>Successful Pod Meetings: </h3>
               {images}
             </div>
@@ -379,9 +383,6 @@ inside(j) {
               <h2>Pod Member of the Week</h2>
               <img  className="prof" src={profile_img2} alt="profile picture" />
               <h3>congrats {this.state.member_of_the_week} your teammates think you rock! Keep it up</h3>
-            </div>
-            <div>
-              <h2>pod accountability performance</h2>
             </div>
           </div>
         </div>
