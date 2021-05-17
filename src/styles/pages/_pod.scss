@@ -16,6 +16,15 @@
     }
   }
 
+  img.prof {
+    height: 70px;
+    width: 70px;
+    // margin: $base 0;
+    // box-sizing: border-box;
+    border: 2px solid $green;
+    border-radius: 50%;
+    max-width: 70px;
+  }
   .profiles {
     display: flex;
     flex-flow: row nowrap;

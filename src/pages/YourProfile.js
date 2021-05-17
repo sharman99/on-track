@@ -65,6 +65,7 @@ class YourProfile extends Component{
         this.setState({rating: fivestar})
 
       }
+      localStorage.setItem('pod', doc.data().pod)
 
     })
   }
