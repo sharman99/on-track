@@ -335,7 +335,7 @@ inside(j) {
             <a onClick={this.routeSheets}>Google Sheets</a>
           </nav>
           <div className="profiles">
-            <div onClick={this.routeProfile1} className="icon">
+            <div id="hoverable" onClick={this.routeProfile1} className="icon">
               {this.state.fname1 != null && <img    className="prof" src={profile_img1} alt="profile picture" />}
               {this.state.fname1 != null && <h2>{this.state.fname1} {this.state.lname1}</h2>}
 
