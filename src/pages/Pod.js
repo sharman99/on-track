@@ -15,6 +15,8 @@ class Pod extends Component{
     this.incrementLinkClick = this.incrementLinkClick.bind(this);
     this.checkProgress = this.checkProgress.bind(this);
     this.inside = this.inside.bind(this)
+    this.routeZoom = this.routeZoom.bind(this);
+    this.routeSheets = this.routeSheets.bind(this);
   }
 
   componentDidMount(){
@@ -145,6 +147,20 @@ class Pod extends Component{
     //get the "a" variable from database 
       }
 
+  routeSheets(){
+    this.incrementLinkClick();
+    this.props.history.push({
+      pathname: '/loading_sheets',
+      state: { current_profile: "temp" }
+    })
+  }
+
+  routeZoom(){
+    this.incrementLinkClick();
+    this.props.history.push('/loading_zoom');
+  }
+  
+
   checkProgress(){
     const db = firebase.firestore();
 
@@ -167,19 +183,11 @@ class Pod extends Component{
       var difference_in_days = difference_in_time / (1000 * 3600 * 24);
 
       var expected_meetings = difference_in_days / meeting_frequency_days
-      console.log(meeting_frequency_days)
       var curr_week = Math.ceil(expected_meetings)
 
       this.state.array= new Array(curr_week);
-
-      console.log(this.state.array)
-
       
       for (var j = 1; j < curr_week;j++) {
-        console.log("j below first time")
-        console.log(j)
-        console.log(curr_week)
-        console.log("loop")
         this.inside(j)
       }
   });
@@ -190,9 +198,6 @@ inside(j) {
   const settings_ref = db.collection("podInfo").doc("pod2").collection("meetingHistory").doc("meeting_" + j);
         settings_ref.get()
         .then(snap =>{
-          console.log("i below")
-          console.log(j)
-          
           const data = snap.data();
           var count = 0
           
@@ -206,18 +211,11 @@ inside(j) {
           if (this.state.num_members != count) {
             //display sad plant
             this.state.array[j-1] = unhealthy_plant_img;
-            console.log("sad")
           }
           else {
             //display happy plant
             this.state.array[j-1] = healthy_plant_img;
-            console.log("happy")
           }
-
-          console.log("hello")
-          console.log(count)
-          console.log("size below")
-          console.log(this.state.array)
         })
 }
 
@@ -230,8 +228,8 @@ inside(j) {
         <div className="container">
           <h1>your accountability pod</h1>
           <nav>
-          <div onClick={this.incrementLinkClick}>Zoom</div>
-            <div onClick={this.incrementLinkClick}>Google Sheets</div>
+          <div onClick={this.routeZoom}>Zoom</div>
+            <div onClick={this.routeSheets}>Google Sheets</div>
           </nav>
           <div className="profiles">
             <div className="icon">
