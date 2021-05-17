@@ -1,5 +1,3 @@
-import { HashRouter, Route, Link } from 'react-router-dom';
-
 import logo from '../logo.svg';
 import '../styles/navbar.scss';
 import React, { Component } from 'react';
