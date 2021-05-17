@@ -27,7 +27,7 @@ class SignIn extends Component{
 
       //this is how you push a variable to the next page
       this.props.history.push({
-        pathname: '/your_profile',
+        pathname: '/pod',
         state: { signed_in_email: email}
       })
 

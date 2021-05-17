@@ -149,15 +149,29 @@ class Pod extends Component{
 
   routeSheets(){
     this.incrementLinkClick();
-    this.props.history.push({
-      pathname: '/loading_sheets',
-      state: { current_profile: "temp" }
+    const db = firebase.firestore();
+
+    db.collection("podInfo").doc("pod2").get().then((doc) => {
+      this.setState({sheets: doc.data().sheets_link})
     })
+    .then(doc => {
+      localStorage.setItem('sheets_link', this.state.sheets)
+      this.props.history.push('/loading_sheets');
+    });
+
   }
 
   routeZoom(){
     this.incrementLinkClick();
-    this.props.history.push('/loading_zoom');
+    const db = firebase.firestore();
+
+    db.collection("podInfo").doc("pod2").get().then((doc) => {
+      this.setState({zoom: doc.data().zoom_link})
+    })
+    .then(doc => {
+      localStorage.setItem('zoom_link', this.state.zoom)
+      this.props.history.push('/loading_zoom');
+    });
   }
   
 

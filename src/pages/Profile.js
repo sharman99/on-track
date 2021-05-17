@@ -1,7 +1,7 @@
 import logo from '../logo.svg';
 import TextField from '@material-ui/core/TextField';
 import React, { Component } from 'react';
-import firebase from '../Firebase';
+import firebase from '../firebase';
 import profile_img from "../media/profile_img.png";
 import Person from "../media/profile.json";
 
