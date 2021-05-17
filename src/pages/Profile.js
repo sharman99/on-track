@@ -41,6 +41,24 @@ class Profile extends Component{
       //get the "a" variable from database
       db.collection("userInfo").doc(localStorage.getItem('other_profile')).get().then((doc) => {
         //setting the state variable called "temp" to the variable in the doc with the name "a"
+        this.setState({num_private: false})
+        this.setState({email_private: false})
+
+        var private_fields =  doc.data().set_private
+        if (private_fields.includes("email")){
+          this.setState({email_private: true})
+        }
+        if (private_fields.includes("number")){
+          this.setState({num_private: true})
+        }
+        if (private_fields.includes("year")){
+          this.setState({year_private: true})
+        }
+        if (private_fields.includes("major")){
+          this.setState({major_private: true})
+        }
+        this.setState({email: localStorage.getItem('other_profile')})
+
         this.setState({firstname: doc.data().first_name})
         this.setState({lastname: doc.data().last_name})
         this.setState({pronouns: doc.data().pronouns})
@@ -96,8 +114,10 @@ class Profile extends Component{
           <div>
             <h2>{this.state.firstname} {this.state.lastname}</h2>
             {this.state.pronouns && <p>pronouns: {this.state.pronouns}</p>}
-            {this.state.major && <p>major: {this.state.major}</p>}
-            {this.state.year && <p>year: {this.state.year}</p>}
+            {!this.state.major_private && this.state.major && <p>major: {this.state.major}</p>}
+            {!this.state.year_private && this.state.year && <p>year: {this.state.year}</p>}
+            {!this.state.email_private && this.state.email && <p>email: {this.state.email}</p>}
+
             {this.state.communication && <p>communication: {this.state.communication}</p>}
             <h2>additional info</h2>
             {this.state.work && <p>types of work: {this.state.work}</p>}
