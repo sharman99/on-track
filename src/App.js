@@ -13,6 +13,7 @@ import Pod from './pages/Pod';
 import WaitingPeriod from './pages/WaitingPeriod'
 import ReportRecorded from './pages/ReportRecorded'
 import YourProfile from './pages/YourProfile'
+import Guidelines from './pages/Guidelines'
 
 function App() {
   return (
@@ -83,6 +84,12 @@ function App() {
           path='/pod'
           render={(props) => (
             <Pod {...props}/>
+          )}
+        />
+        <Route
+          path='/community_guidelines'
+          render={(props) => (
+            <Guidelines {...props}/>
           )}
         />
       </HashRouter>

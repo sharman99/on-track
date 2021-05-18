@@ -35,11 +35,16 @@ class Pod extends Component{
       //not logged in so send to sign in
       this.props.history.push('/sign_in');
     }else{
-    const db = firebase.firestore();
-    this.checkProgress();
-
-       this.curr_pod = localStorage.getItem('pod')
+      this.curr_pod = localStorage.getItem('pod')
        console.log(this.curr_pod)
+
+      if(this.curr_pod == undefined || this.curr_pod == "" || this.curr_pod == "undefined"){
+        this.props.history.push('/waiting_period');
+       }
+       else{
+        const db = firebase.firestore();
+        this.checkProgress();
+
        db.collection("podInfo").doc(this.curr_pod).get().then((doc) => {
         //setting the state variable called "temp" to the variable in the doc with the name "a"
         var email = doc.data().member_of_the_week;
@@ -158,7 +163,7 @@ class Pod extends Component{
 
   
       })
-
+    }
     }
   }
 
@@ -358,7 +363,7 @@ inside(j) {
 
   render() {
     var images = this.state.array.map(function(image) {
-      return (<img src={image} rounded />);
+      return (<img src={image} rounded/>);
      });
     return (
       <div className="Pod">

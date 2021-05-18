@@ -25,12 +25,20 @@ class Navbar extends Component{
     this.props.history.push('/your_profile');
   }
 
+  goToProfile = () => {
+    this.props.history.push('/your_profile');
+  }
+
   doSignOut = () => {
     firebase.default.auth().signOut()
     this.props.history.push('/sign_in');
     console.log("signed out")
     localStorage.clear();
     console.log(localStorage.getItem('email'))
+  }
+
+  goToGuidelines = () => {
+    this.props.history.push('/community_guidelines');
   }
 
   render() {
@@ -41,6 +49,7 @@ class Navbar extends Component{
         <ul>
           <li><a onClick={this.goToProfile}>My Profile</a></li>
           <li><a onClick={this.goToPod}>Accountability Pod</a></li>
+          <li><a onClick={this.goToGuidelines}>Community Guidelines</a></li>
           <li><a onClick={this.doSignOut}>Sign Out</a></li>
         </ul>
       </nav>
