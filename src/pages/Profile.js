@@ -61,6 +61,9 @@ class Profile extends Component{
 
         this.setState({firstname: doc.data().first_name})
         this.setState({lastname: doc.data().last_name})
+        if (private_fields.includes("lname")){
+          this.setState({lastname: doc.data().last_name[0] + "."})
+        }
         this.setState({pronouns: doc.data().pronouns})
         this.setState({major: doc.data().major})
         this.setState({year: doc.data().year})
@@ -106,6 +109,7 @@ class Profile extends Component{
       <div className="Profile">
         <div>
           <h1>profile</h1>
+          <button className="report-button" onClick={this.reportUser}>report user</button>
         </div>
         <div className="split">
           <div className="profile-image">

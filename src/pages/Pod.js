@@ -57,8 +57,13 @@ class Pod extends Component{
           localStorage.setItem('profile_img1', profile_img1)
 
           db.collection("userInfo").doc(doc.data().user1).get().then((doc) => {
+            var private_fields =  doc.data().set_private
+
             this.setState({fname1: doc.data().first_name});
             this.setState({lname1: doc.data().last_name});
+            if (private_fields.includes("lname")){
+              this.setState({lastname: doc.data().last_name[0] + "."})
+            }
             this.setState({pronouns1:doc.data().pronouns});
             this.setState({email1: doc.data().user1});
 
@@ -75,6 +80,11 @@ class Pod extends Component{
           db.collection("userInfo").doc(doc.data().user2).get().then((doc) => {
             this.setState({fname2: doc.data().first_name});
             this.setState({lname2: doc.data().last_name});
+            var private_fields =  doc.data().set_private
+
+            if (private_fields.includes("lname")){
+              this.setState({lname2: doc.data().last_name[0] + "."})
+            }
             this.setState({pronouns2:doc.data().pronouns});
             this.setState({email2: doc.data().user2});
 
@@ -91,6 +101,11 @@ class Pod extends Component{
             db.collection("userInfo").doc(doc.data().user3).get().then((doc) => {
               this.setState({fname3: doc.data().first_name});
               this.setState({lname3: doc.data().last_name});
+              var private_fields =  doc.data().set_private
+
+              if (private_fields.includes("lname")){
+                this.setState({lname3: doc.data().last_name[0] + "."})
+              }
               this.setState({pronouns3:doc.data().pronouns});
               this.setState({email3: doc.data().user3});
 
@@ -108,6 +123,11 @@ class Pod extends Component{
               db.collection("userInfo").doc(doc.data().user4).get().then((doc) => {
                 this.setState({fname4: doc.data().first_name});
                 this.setState({lname4: doc.data().last_name});
+                var private_fields =  doc.data().set_private
+
+                if (private_fields.includes("lname")){
+                  this.setState({lname4: doc.data().last_name[0] + "."})
+                }
                 this.setState({pronouns4:doc.data().pronouns});
                 this.setState({email4: doc.data().user4});
 
@@ -124,6 +144,11 @@ class Pod extends Component{
                 db.collection("userInfo").doc(doc.data().user5).get().then((doc) => {
                   this.setState({fname5: doc.data().first_name});
                   this.setState({lname5: doc.data().last_name});
+                  var private_fields =  doc.data().set_private
+
+                  if (private_fields.includes("lname")){
+                    this.setState({lname5: doc.data().last_name[0] + "."})
+                  }
                   this.setState({pronouns5:doc.data().pronouns});
                   this.setState({email5: doc.data().user5});
 
@@ -205,48 +230,57 @@ class Pod extends Component{
 
 
   routeProfile1(){
+    if (!(localStorage.getItem('email1') ==  localStorage.getItem('email'))){
+
       localStorage.setItem('other_profile', localStorage.getItem('email1'))
       localStorage.setItem('other_profile_img', localStorage.getItem('profile_img1'))
 
       this.props.history.push({
         pathname: '/profile',
-       });
+       });}
   }
 
   routeProfile2(){
+    if (!(localStorage.getItem('email2') ==  localStorage.getItem('email'))){
+
     localStorage.setItem('other_profile', localStorage.getItem('email2'))
     localStorage.setItem('other_profile_img', localStorage.getItem('profile_img2'))
 
     this.props.history.push({
       pathname: '/profile',
-     });
+     });}
 }
 
 routeProfile3(){
+  if (!(localStorage.getItem('email3') ==  localStorage.getItem('email'))){
+
   localStorage.setItem('other_profile', localStorage.getItem('email3'))
   localStorage.setItem('other_profile_img', localStorage.getItem('profile_img3'))
 
   this.props.history.push({
     pathname: '/profile',
-   });
+   });}
 }
 
 routeProfile4(){
+  if (!(localStorage.getItem('email4') ==  localStorage.getItem('email'))){
+
   localStorage.setItem('other_profile', localStorage.getItem('email4'))
   localStorage.setItem('other_profile_img', localStorage.getItem('profile_img4'))
 
   this.props.history.push({
     pathname: '/profile',
-   });
+   });}
 }
 
 routeProfile5(){
+  if (!(localStorage.getItem('email5') ==  localStorage.getItem('email'))){
   localStorage.setItem('other_profile', localStorage.getItem('email5'))
   localStorage.setItem('other_profile_img', localStorage.getItem('profile_img5'))
 
   this.props.history.push({
     pathname: '/profile',
-   });
+   });}
 }
 
 
@@ -330,6 +364,7 @@ inside(j) {
       <div className="Pod">
         <div className="container">
           <h1>your accountability pod</h1>
+          {/* <div id="tlkio" data-channel="hey" style="width:100%;height:400px;"></div><script async src="http://tlk.io/embed.js" type="text/javascript"></script> */}
           <nav className="Platforms">
             <a onClick={this.routeZoom}>Zoom</a>
             <a onClick={this.routeSheets}>Google Sheets</a>
@@ -371,7 +406,7 @@ inside(j) {
               {this.state.fname5 != null && <h2>{this.state.pronouns5}</h2>}
             </div>
             </div>
-          <hr />
+
           <div className="split">
             <div>
               <h2>pod info</h2>
@@ -388,6 +423,7 @@ inside(j) {
           </div>
         </div>
       </div>
+      
     );
   }
 }

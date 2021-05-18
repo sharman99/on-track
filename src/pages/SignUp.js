@@ -451,11 +451,11 @@ class SignUp extends Component{
             {/* <label>
               <input type="checkbox" name="fname" value="fname" onChange={this.remainPrivate}/>
               First Name
-            </label>
+            </label>*/}
             <label>
               <input type="checkbox" name="lname" value="lname" onChange={this.remainPrivate}/>
               Last Name
-            </label> */}
+            </label>
             {/* <label>
               <input type="checkbox" name="pronouns" value="pronouns" onChange={this.remainPrivate}/>
               Pronouns
