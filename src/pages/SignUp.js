@@ -377,7 +377,7 @@ class SignUp extends Component{
               name="lname"
               value={last_name}
               onChange={this.onChange}/>
-            <label className="field-heading" for="pronouns">Pronouns (optional)</label>
+            <label className="field-heading" for="pronouns">Pronouns (enter '-' to keep private)</label>
             <input
               type="text"
               id="pronouns"
@@ -446,20 +446,20 @@ class SignUp extends Component{
             {passwordOne != null && passwordOne.length < 6 && <div style={{ color: 'red'}}> Password must be at least 6 characters.</div>}
           </div>
 
-          <h2>Check the fields you would like to remain private</h2>
+          <h2>Check the fields you would like to remain private. For your safety, we never share phome numbers to users' profiles.</h2>
           <div className="private-info">
-            <label>
+            {/* <label>
               <input type="checkbox" name="fname" value="fname" onChange={this.remainPrivate}/>
               First Name
             </label>
             <label>
               <input type="checkbox" name="lname" value="lname" onChange={this.remainPrivate}/>
               Last Name
-            </label>
-            <label>
+            </label> */}
+            {/* <label>
               <input type="checkbox" name="pronouns" value="pronouns" onChange={this.remainPrivate}/>
               Pronouns
-            </label>
+            </label> */}
             <label>
               <input type="checkbox" name="major" value="major" onChange={this.remainPrivate}/>
               Major
@@ -468,10 +468,10 @@ class SignUp extends Component{
               <input type="checkbox" name="year" value="year" onChange={this.remainPrivate}/>
               Year
             </label>
-            <label>
+            {/* <label>
               <input type="checkbox" name="number" value="number" onChange={this.remainPrivate}/>
               Phone Number
-            </label>
+            </label> */}
             <label>
               <input type="checkbox" name="email" value="email" onChange={this.remainPrivate}/>
               Email
