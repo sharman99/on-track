@@ -106,6 +106,7 @@ class Profile extends Component{
       <div className="Profile">
         <div>
           <h1>profile</h1>
+          <button className="report-button" onClick={this.reportUser}>report user</button>
         </div>
         <div className="split">
           <div className="profile-image">
