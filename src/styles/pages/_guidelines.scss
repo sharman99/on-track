@@ -1,0 +1,14 @@
+.Guidelines {
+  padding-top: 100px;
+
+  .section {
+    padding: 120px 0;
+    width: 100%;
+  }
+
+  .alt {
+    @extend .section;
+    background-color: $green;
+    color: white;
+  }
+}
